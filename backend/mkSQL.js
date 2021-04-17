@@ -41,6 +41,7 @@ const startMonsters = `INSERT INTO monsters (name, cr, url)
 const endMonsters = `;`;
 
 async function get () {
+    // axios is only getting up to H, either need to pageniate/get more monsters
     const resp = await axios.get('https://api.open5e.com/monsters/?limit=500');
 
     const insertMonsters = resp.data.results.map( m => (`('${m.name.replace("'", "''")}', '${m.challenge_rating}', '${m.slug}')`)).join(',\n\t\t');
