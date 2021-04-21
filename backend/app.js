@@ -22,7 +22,7 @@ app.use(morgan("tiny"));
 app.use(authenticateJWT);
 
 app.use("/auth", authRoutes);
-app.use("/users", usersRoutes);
+app.use("/users", usersRoutes);  // contains users/id/enounters/id
 app.use("/monsters", monsterRoutes);
 
 
