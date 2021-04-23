@@ -32,24 +32,37 @@ class Encounters {
     // add monster
 
     // get encounter 
-    static async get ( userId, encounterId){
-        
-        const encounter = await db.query(
+    static async get ( encounterId){
+        // Split into multi queries for speed
+        // Encounter and then Monster join
+        const result = await db.query(
             `SELECT encounters.id,
                 encounters.username,
-                monster_encounters.number,
-                monsters.name
+                description
             FROM encounter
-            JOIN monster_encounters 
-                ON monster_encounters.encounter_id=encounters.id
-            JOIN monsters 
-                ON monster_encounters.monster_name=monsters.name
             WHERE encounters.id=$1`,
             [ encounterId ]
         )
-        if( !encounter ) throw new NotFoundError(`No encounter: ${encounterId}`);
+        
+        const encounter = result.rows[0];
 
-        return encounter;
+        if( !encounter ) throw new NotFoundError(`No encounter: ${encounterId}`);
+        const monsterResults = await db.query(`
+            SELECT m.name,
+                m.cr,
+                m.size,
+                m.type,
+                m.url,
+                e.number
+            FROM monster_encounters AS e
+            WHERE e.encounter_id = $1
+            JOIN monsters as m
+            ON m.name=e.monster_name
+            `)
+        
+        const monsters = monsterResults.rows;
+
+        return {encounterId : { encounter, monsters }};
     }
 
     // delete encounter

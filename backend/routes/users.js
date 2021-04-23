@@ -96,18 +96,28 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
  *
  * Returns { username, description, id}
  *
- * Authorization required: admin or same-user-as-:username
  * */
-
 router.post("/:username/encounter", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
     const { description } = req.body;
     const encounter = await Encounters.create( req.params.username, description );
-    return res.json({ encounter });
+    return res.status(201).json({ encounter });
   } catch (err) {
     return next(err);
   }
 });
 
+/** GET /[username]/encounter/[id]
+ * 
+ * Returns { username, description, id, [monsters]}
+ */
+router.get("/:username/encounter/:id", ensureCorrectUserOrAdmin, async function (req, res, next){
+    try {
+        const encounter = await Encounters.get( req.params.id );
+        return res.json({ encounter });
+    } catch (err) {
+        return next(err);
+    }
+});
 
 module.exports = router;
