@@ -1,4 +1,4 @@
-onst { BadRequestError } = require("../expressError");
+const { BadRequestError } = require("../expressError");
 
 /**
  * Helper for making selective update queries.

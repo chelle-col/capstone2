@@ -11,7 +11,7 @@ const User = require("../models/user");
 const { createToken } = require("../helpers/tokens");
 const userNewSchema = require("../schemas/userNew.json");
 const userUpdateSchema = require("../schemas/userUpdate.json");
-const { default: Encounters } = require("../../models/encounters");
+const Encounters = require("../models/encounters");
 
 const router = express.Router();
 

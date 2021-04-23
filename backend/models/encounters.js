@@ -69,4 +69,4 @@ class Encounters {
 
 }
 
-export default Encounters;
+module.exports = Encounters;
