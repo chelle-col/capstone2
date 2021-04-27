@@ -94,7 +94,7 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
 
 /** POST /[username]/encounter
  *
- * Returns { username, description, id}
+ * Returns { "encounter": {username, description, id}}
  *
  * */
 router.post("/:username/encounter", ensureCorrectUserOrAdmin, async function (req, res, next) {
@@ -113,11 +113,26 @@ router.post("/:username/encounter", ensureCorrectUserOrAdmin, async function (re
  */
 router.get("/:username/encounter/:id", ensureCorrectUserOrAdmin, async function (req, res, next){
     try {
+      //TODO: Addin Json verification
         const encounter = await Encounters.get( req.params.id );
         return res.json({ encounter });
     } catch (err) {
         return next(err);
     }
 });
+
+/** PUT /[username]/encounter/[id]
+ * 
+ *  Returns { username, description, id, [monsters]}
+ */
+router.put("/:username/encounter/:id", ensureCorrectUserOrAdmin, async function (req, res, next ){
+  try {
+    //TODO: Addin Json verification
+    const result = await Encounters.putAllMonsters( req.params.id, req.body );
+    return res.json(result);
+  } catch (err) {
+      return next(err);
+  }
+})
 
 module.exports = router;
