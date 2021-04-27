@@ -141,7 +141,15 @@ class Encounters {
     }
 
     // delete encounter
-
+    static async deleteEncounter ( encounterId ){
+        const encounter = await db.query(`
+        DELETE 
+        FROM ${ENCOUNTER_TABLE}
+        WHERE id=$1
+        RETURNING id`,
+        [ encounterId ]);
+        return encounter;
+    }
 }
 
 module.exports = Encounters;

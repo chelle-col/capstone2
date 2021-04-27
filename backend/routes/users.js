@@ -133,6 +133,19 @@ router.put("/:username/encounter/:id", ensureCorrectUserOrAdmin, async function 
   } catch (err) {
       return next(err);
   }
+});
+
+/** DELETE /[username]/encounter/[id]
+ * 
+ * Returns { deleted: id}
+ */ 
+router.delete("/:username/encounter/:id", ensureCorrectUserOrAdmin, async function (req, res, next){
+  try{
+    const result = await Encounters.deleteEncounter( req.params.id );
+    return res.json(result);
+  }catch ( err ){
+    return next(err);
+  }
 })
 
 module.exports = router;
