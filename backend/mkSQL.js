@@ -14,11 +14,11 @@ const createTables = `
         last_name TEXT NOT NULL
     );
     CREATE TABLE monsters (
-        name TEXT PRIMARY KEY,
+        slug VARCHAR(50) PRIMARY KEY,
         cr VARCHAR(5) NOT NULL,
         size VARCHAR(10) NOT NULL,
         type VARCHAR(30) NOT NULL,
-        url TEXT NOT NULL
+        name TEXT NOT NULL
     );
     CREATE TABLE encounters (
         id SERIAL PRIMARY KEY,
@@ -44,7 +44,7 @@ const insertUser = `INSERT INTO users (username, password, first_name, last_name
         'Test',
         'User');
     `;
-const startMonsters = `INSERT INTO monsters (name, cr, size, type, url)
+const startMonsters = `INSERT INTO monsters (slug, cr, size, type, name)
     VALUES `;
 
 const endMonsters = `;`;
@@ -53,7 +53,7 @@ async function get () {
     // axios is only getting up to H, either need to pageniate/get more monsters
     const resp = await axios.get('https://api.open5e.com/monsters/?limit=500');
 
-    const insertMonsters = resp.data.results.map( m => (`('${m.name.replace("'", "''")}', '${m.challenge_rating}', '${m.size}', '${m.type}', '${m.slug}')`)).join(',\n\t\t');
+    const insertMonsters = resp.data.results.map( m => (`('${m.slug}', '${m.challenge_rating}', '${m.size}', '${m.type}', '${m.name.replace("'", "''")}')`)).join(',\n\t\t');
 
     const fileString = createDB + createTables + insertUser + startMonsters + insertMonsters + endMonsters;
 
