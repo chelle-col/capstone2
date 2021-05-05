@@ -1,7 +1,7 @@
-import * as actions from './actionTypes;';
+import * as actions from './actionTypes';
 
 
-export const addAllMonster = ( monsters ) => (
+export const addAllMonsters = ( monsters ) => (
     { 'type': actions.ADD_ALL_MONSTERS, monsters }
 )
 

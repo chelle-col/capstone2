@@ -1,11 +1,16 @@
 import * as actions from './actionTypes';
 
-export const rootReducer = (state, action) => {
+const INIT_STATE = {
+    monsters : {},
+    user: {}
+}
+
+const rootReducer = (state=INIT_STATE, action) => {
     switch (action.type){
         case actions.ADD_ALL_MONSTERS:
             return {
                 ...state,
-                monsters
+                'monsters': {...action.monsters}
             };
         case actions.ADD_ENCOUNTER:
             return {
@@ -34,3 +39,5 @@ export const rootReducer = (state, action) => {
             return state; 
     }
 }
+
+export default rootReducer;

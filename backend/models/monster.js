@@ -22,7 +22,7 @@ class Monster {
           `SELECT name,
             cr
            FROM monsters
-           ORDER BY username`,
+           ORDER BY name`,
     );
 
     return result.rows;

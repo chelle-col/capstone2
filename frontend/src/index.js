@@ -8,9 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import thunk from "redux-thunk";
 
-import rootReducer from './redux/rootReducer';
+import rootReducer from './redux/rootreducer';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+
+import { addMonstersFromApi } from './api/apiStore';
 
 const store = createStore(
   rootReducer,
@@ -19,6 +21,8 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__
     && window.__REDUX_DEVTOOLS_EXTENSION__()
   ));
+
+  store.dispatch(addMonstersFromApi());
 
 ReactDOM.render(
   <React.StrictMode>
