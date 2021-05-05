@@ -4,6 +4,7 @@ import UserLanding from './UserLanding';
 import NavBar from './NavBar/NavBar';
 import Login from './Login';
 import SignUp from './SignUp';
+import MonsterDetail from './MonsterDetail';
 
 function App() {
 
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route exact path='/signup'>
         <SignUp />
+      </Route>
+      <Route path='/:monster'>
+        <MonsterDetail />
       </Route>
     </Switch>
     </>

@@ -20,7 +20,10 @@ class Monster {
   static async findAll() {
     const result = await db.query(
           `SELECT name,
-            cr
+            cr,
+            slug,
+            type,
+            size
            FROM monsters
            ORDER BY name`,
     );
