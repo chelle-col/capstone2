@@ -10,7 +10,7 @@ const MonsterList = ({ monsters, isloading }) => {
     return (
         <>
             <h2>Monsters</h2>
-            <ul>
+            
             <div className='container'>
             <div className='row'>
                 <Button>***</Button>
@@ -22,7 +22,7 @@ const MonsterList = ({ monsters, isloading }) => {
             </div>
         </div>
                 {Object.values(monsters).map( (m, idx) => <LineListItem key={idx} item={m} />)}
-            </ul>
+            
         </>
     )
 }

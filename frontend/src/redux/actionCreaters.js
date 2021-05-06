@@ -28,3 +28,7 @@ export const addToCurrentEncounter = ( monster ) => (
 export const changeNumOf = ( monster, numberOf ) => (
     {'type': actions.ADD_TO_CURR, 'payload': { ...monster, numberOf }}
 )
+
+export const removeFromEncounter = ( monster ) => (
+    {'type': actions.REMOVE_FROM_ENCOUNTER, 'payload': monster }
+)

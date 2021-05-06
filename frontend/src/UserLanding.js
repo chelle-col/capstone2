@@ -17,8 +17,7 @@ const UserLanding = () => {
 
     return (
         <>
-            <h1>UserLanding</h1>
-            <div className='container'>
+            <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-3 mx-3'>
                         <EncounterDisplay encounter={encounter} />

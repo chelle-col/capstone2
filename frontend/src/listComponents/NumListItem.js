@@ -1,7 +1,7 @@
 import PartialListItem from './PartialListItem';
 import UpDownBox from './UpDownBox';
-import { useDispatch } from 'react-router-dom';
-import { changeNumOf } from '../redux/actionCreaters';
+import { useDispatch } from 'react-redux';
+import { changeNumOf, removeFromEncounter } from '../redux/actionCreaters';
  
 const NumListItem = ({ item }) => {
     const dispatch = useDispatch();
@@ -11,7 +11,11 @@ const NumListItem = ({ item }) => {
     }
 
     const decrease = ( ) => {
-        dispatch(changeNumOf(item, item.numberOf - 1));
+        if( item.numberOf - 1 === 0){
+            dispatch(removeFromEncounter(item));
+        } else {
+            dispatch(changeNumOf(item, item.numberOf - 1));
+        }
     }
 
     return (

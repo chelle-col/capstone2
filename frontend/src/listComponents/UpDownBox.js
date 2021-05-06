@@ -1,10 +1,10 @@
 import { Badge } from 'reactstrap';
 
-const UpDownBox = ({ number=0, increase, decrease }) => {
+const UpDownBox = ({ numberOf, increase, decrease }) => {
     return (
-        <div className='col-1'>
+        <div className='col'>
             <Badge onClick={increase} ><i className="fas fa-chevron-up"></i></Badge>
-            <div className='ml-1'>{number}</div>
+            <div className='ml-1'>{numberOf}</div>
             <Badge onClick={decrease} ><i className="fas fa-chevron-down"></i></Badge>
         </div>
     )

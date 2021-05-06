@@ -28,6 +28,10 @@ const rootReducer = (state=INIT_STATE, action) => {
                     ...action.payload.encounter
                 }
             };
+        case actions.REMOVE_FROM_ENCOUNTER:
+            const clone = {...state};
+            delete clone.currentEncounter[action.payload.slug];
+            return {...clone};
         case actions.REMOVE_USER:
                 delete state.user;
                 return {...state};
