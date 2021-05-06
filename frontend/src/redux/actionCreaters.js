@@ -20,3 +20,11 @@ export const changeEncounter = ( id, partialEncounter ) => (
 export const addEncounter = ( encounter ) => (
     { 'type': actions.ADD_ENCOUNTER, 'payload': encounter }
 )
+
+export const addToCurrentEncounter = ( monster ) => (
+    {'type': actions.ADD_TO_CURR, 'payload': { ...monster, numberOf: 1 }}
+)
+
+export const changeNumOf = ( monster, numberOf ) => (
+    {'type': actions.ADD_TO_CURR, 'payload': { ...monster, numberOf }}
+)

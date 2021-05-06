@@ -5,3 +5,4 @@ export const ADD_USER = "ADD_USER";
 export const REMOVE_USER = "REMOVE_USER";
 export const CHANGE_ENCOUNTER = "CHANGE_ENCOUNTER";
 export const ADD_ENCOUNTER = "ADD_ENCOUNTER";
+export const ADD_TO_CURR = "ADD_TO_CURRENT_ENCOUNTER"

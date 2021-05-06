@@ -1,17 +1,7 @@
-// import { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
-import ListItem from './ListItem';
+import LineListItem from './LineListItem';
+import { Button } from 'reactstrap';
 
 const MonsterList = ({ monsters, isloading }) => {
-
-    // const monsters = useSelector(st => st.monsters.monsters);
-    // const [ isloading, setIsLoading ] = useState(true);
-
-    // useEffect( () => {
-    //     if(JSON.stringify(monsters) !== '{}' && monsters !== undefined ){
-    //         setIsLoading(false);
-    //     }
-    // }, [ monsters ])
 
     if( isloading ){
         return <h1>Loading...</h1>
@@ -21,7 +11,17 @@ const MonsterList = ({ monsters, isloading }) => {
         <>
             <h2>Monsters</h2>
             <ul>
-                {Object.values(monsters).map( (m, idx) => <ListItem key={idx} item={m} />)}
+            <div className='container'>
+            <div className='row'>
+                <Button>***</Button>
+                <div className='col-2'>Name</div>
+                <div className='col-2'>CR</div>
+                <div className='col-2'>Size</div>
+                <div className='col-2'>Type</div>
+                <Button>***</Button>
+            </div>
+        </div>
+                {Object.values(monsters).map( (m, idx) => <LineListItem key={idx} item={m} />)}
             </ul>
         </>
     )

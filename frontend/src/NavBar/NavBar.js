@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
       <div>
         <Navbar color='light' light expand='md'>
-            <NavbarBrand tag={Link} to='/'>Jobly</NavbarBrand>
+            <NavbarBrand tag={Link} to='/'>Encounter <br/> Time</NavbarBrand>
           <Nav className="ml-auto" navbar>
             <LogoutNavbar />
             {/* { user && <LoginNavbar signout={signout} />}

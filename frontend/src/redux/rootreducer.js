@@ -2,7 +2,8 @@ import * as actions from './actionTypes';
 
 const INIT_STATE = {
     monsters : {},
-    user: {}
+    user: {},
+    currentEncounter: {}
 }
 
 const rootReducer = (state=INIT_STATE, action) => {
@@ -35,6 +36,16 @@ const rootReducer = (state=INIT_STATE, action) => {
                 ...state,
                 user : action.user
             };
+        case actions.ADD_TO_CURR:
+            return {
+                ...state,
+                currentEncounter : {
+                    ...state.currentEncounter,
+                    [action.payload.slug]:{
+                      ...action.payload
+                }
+                }
+            }
         default:
             return state; 
     }
