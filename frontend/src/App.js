@@ -4,7 +4,7 @@ import UserLanding from './UserLanding';
 import NavBar from './NavBar/NavBar';
 import Login from './Login';
 import SignUp from './SignUp';
-import MonsterDetail from './MonsterDetail';
+import MonsterDetail from './monster/MonsterDetail';
 
 function App() {
 
