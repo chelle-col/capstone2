@@ -3,7 +3,7 @@ import UpDownBox from './UpDownBox';
 import { useDispatch } from 'react-redux';
 import { changeNumOf, removeFromEncounter } from '../redux/actionCreaters';
  
-const NumListItem = ({ item }) => {
+const NumListItem = ({ item, update }) => {
     const dispatch = useDispatch();
 
     const increase = ( ) => {
@@ -13,6 +13,7 @@ const NumListItem = ({ item }) => {
     const decrease = ( ) => {
         if( item.numberOf - 1 === 0){
             dispatch(removeFromEncounter(item));
+            update();
         } else {
             dispatch(changeNumOf(item, item.numberOf - 1));
         }

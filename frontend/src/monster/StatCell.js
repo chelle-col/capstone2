@@ -3,7 +3,7 @@ const StatCell = ({ stat }) => {
     return (
         <div className='col'>
             {stat[0]}
-            <br></br>
+            <hr/>
             {stat[1]}
         </div>
     )

@@ -19,9 +19,9 @@ const MonsterDetail = () => {
     return (
         <div className='container'>
             <div className='row'>
-                <h1>{monster}</h1>
+                <h1>{monsterInfo.name}</h1>
         </div>
-                <StatBlock stats={statInfo} />
+        <StatBlock stats={statInfo} />
         </div>
         )
 }

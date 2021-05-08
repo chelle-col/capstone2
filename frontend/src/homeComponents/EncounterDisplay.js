@@ -1,11 +1,14 @@
 import NumListItem from '../listComponents/NumListItem';
 import PartialListItem from '../listComponents/PartialListItem';
 import { calcXp } from '../helpers';
+import useForceUpdate from '../hooks/useForceUpdate';
 
 const EncounterDisplay = ({ encounter }) => {
     const monsterInfo = Object.values(encounter);
     const totalXp = monsterInfo.reduce( ( acc, curr ) => acc + calcXp( curr.numberOf, curr.cr ), 0);
-    // TODO doesn't rerender on removal of monster from state
+    
+    const forceUpdate = useForceUpdate();
+
     return (
         <>
             <h1>Encounter</h1>
@@ -14,7 +17,7 @@ const EncounterDisplay = ({ encounter }) => {
                 <PartialListItem items={[ ' ', 'Name', "CR"]}/>
                 </div>
                 <div className='row'>
-                {monsterInfo.map( m => <NumListItem key={m.slug} item={m}/>)}
+                {monsterInfo.map( m => <NumListItem key={m.slug} item={m} update={forceUpdate}/>)}
                 <PartialListItem items={['Total Experience: ', totalXp]}/>
                 </div>
             </div>

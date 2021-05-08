@@ -13,12 +13,12 @@ const MonsterList = ({ monsters, isloading }) => {
             
             <div className='container'>
             <div className='row'>
-                <Button>***</Button>
-                <div className='col-2'>Name</div>
-                <div className='col-2'>CR</div>
-                <div className='col-2'>Size</div>
-                <div className='col-2'>Type</div>
-                <Button>***</Button>
+                <Button>*</Button>
+                <div className='col'>CR</div>
+                <div className='col'>Size</div>
+                <div className='col'>Type</div>
+                <div className='col'>Name</div>
+                <Button>***********</Button>
             </div>
         </div>
                 {Object.values(monsters).map( (m, idx) => <LineListItem key={idx} item={m} />)}
