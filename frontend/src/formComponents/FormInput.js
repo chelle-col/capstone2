@@ -1,7 +1,7 @@
 import { FormGroup, Label } from "reactstrap";
 
 
-const FormItem = ({ name, type, placeholder }) => {
+const FormInput = ({ name, type, placeholder }) => {
     return (
         <FormGroup>
             <Label for={name}>{name}</Label>
@@ -10,4 +10,4 @@ const FormItem = ({ name, type, placeholder }) => {
     )
 }
 
-export default FormItem;
+export default FormInput;
