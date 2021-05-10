@@ -12,7 +12,7 @@ const FormDropdown = ({ header, actions, handleClick, size='lg' }) => {
                 {header}
             </DropdownToggle>
             <DropdownMenu>
-            {actions.map( a => <DropdownItem onClick={()=> handleClick(a)}>{a}</DropdownItem>)}
+            {actions.map( (a, idx) => <DropdownItem key={idx} onClick={()=> handleClick(a)}>{a}</DropdownItem>)}
             </DropdownMenu>
         </Dropdown>
     )

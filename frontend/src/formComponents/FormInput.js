@@ -1,12 +1,14 @@
-import { FormGroup, Label } from "reactstrap";
+import { FormGroup, Label, Input } from "reactstrap";
 
 
-const FormInput = ({ name, type, placeholder }) => {
+const FormInput = ({ name, title, type, placeholder, handleChange, value }) => {
     return (
-        <FormGroup>
-            <Label for={name}>{name}</Label>
-            <Input type={type} name={name} placeholder={placeholder} />
-        </FormGroup>
+        <div className='m-2'>
+            <FormGroup>
+                <Label for={name}>{title}</Label>
+                <Input type={type} name={name} placeholder={placeholder} onChange={ e => handleChange(e)} value={value}/>
+            </FormGroup>
+        </div>
     )
 }
 
