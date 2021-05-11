@@ -105,6 +105,19 @@ router.post("/:username/encounter", ensureCorrectUserOrAdmin, async function (re
   }
 });
 
+/** GET /[usernae]/encounter
+ * 
+ * Returns {"encounters": [id: [monster1...], ...]}
+ */
+router.get('/:username/encounter', ensureCorrectUserOrAdmin, async function (req, res, next){
+  try{
+    const encounters = Encounters.getAll( req.params.username );
+    return res.json({ encounters });
+  } catch (err) {
+    return next(err);
+  }
+})
+
 /** GET /[username]/encounter/[id]
  * 
  * Returns { username, description, id, [monsters]}

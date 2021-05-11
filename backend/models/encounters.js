@@ -8,6 +8,19 @@ const { ENCOUNTER_TABLE, MONST_ENCOUNT_TABLE, MONSTER_TABLE } = require('./table
 /** Related functions for monsters. */
 
 class Encounters {
+
+    // gets all user encounters
+    static async getAll( username ){
+        const result = await db.query(
+            `SELECT id,
+                description,
+                name
+            FROM encounters
+            WHERE username=$1`
+        , [username]);
+        return result.rows;
+    }
+
     // create encouter
     static async create( username, description ){
         const result = await db.query(
@@ -121,6 +134,7 @@ class Encounters {
         const encounter = result.rows[0];
 
         if( !encounter ) throw new NotFoundError(`No encounter: ${encounterId}`);
+
         const monsterResults = await db.query(`
             SELECT m.name,
                 m.cr,

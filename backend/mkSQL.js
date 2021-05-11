@@ -23,17 +23,13 @@ const createTables = `
     CREATE TABLE encounters (
         id SERIAL PRIMARY KEY,
         username VARCHAR(25) REFERENCES users ON DELETE CASCADE,
+        name VARCHAR(25),
         description TEXT
     );
     CREATE TABLE monster_encounters(
         monster_name TEXT REFERENCES monsters ON DELETE CASCADE,
         encounter_id INTEGER REFERENCES encounters ON DELETE CASCADE,
         number_of INTEGER NOT NULL
-    );
-    CREATE TABLE user_encounters (
-        id SERIAL PRIMARY KEY,
-        encounter_id INTEGER REFERENCES encounters ON DELETE CASCADE,
-        monster_name TEXT REFERENCES monsters ON DELETE CASCADE
     );
     `;
 

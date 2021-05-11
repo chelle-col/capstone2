@@ -1,19 +1,16 @@
 import MonsterList from './listComponents/MonsterList';
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import EncounterDisplay from './homeComponents/EncounterDisplay';
+import useIsStateLoaded from './hooks/useIsStateLoaded';
 
 const UserLanding = () => {
 
-    const monsters = useSelector(st => st.monsters.monsters);
+    const [ monsters, isLoading ] = useIsStateLoaded('monsters');
     const encounter = useSelector(st => st.currentEncounter);
-    const [ isloading, setIsLoading ] = useState(true);
 
-    useEffect( () => {
-        if(JSON.stringify(monsters) !== '{}' && monsters !== undefined ){
-            setIsLoading(false);
-        }
-    }, [ monsters ])
+    if( isLoading ){
+        return <h2>Loading...</h2>
+    }
 
     return (
         <>
@@ -23,7 +20,7 @@ const UserLanding = () => {
                         <EncounterDisplay encounter={encounter} />
                     </div>
                     <div className='col mx-3'>
-                        <MonsterList isloading={isloading} monsters={monsters} />
+                        <MonsterList isloading={isLoading} monsters={monsters} />
                     </div>
                 </div>
             </div>

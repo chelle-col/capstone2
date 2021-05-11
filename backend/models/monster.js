@@ -14,7 +14,7 @@ class Monster {
 
   /** Find all monsters.
    *
-   * Returns [{ username, first_name, last_name, email, is_admin }, ...]
+   * Returns [{ monster, cr, slug, type, size }, ...]
    **/
 
   static async findAll() {
