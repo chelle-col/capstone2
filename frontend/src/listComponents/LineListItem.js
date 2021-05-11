@@ -20,9 +20,9 @@ const LineListItem = ({ item }) =>{
     return (
         <div className='container my-2'>
             <div className='row'>
-                <Button onClick={handleClick}>+</Button>
+                <Button className='col' onClick={handleClick}>+</Button>
                 <PartialListItem items={[item.name, item.cr, item.size, item.type]} />
-                <Button onClick={handleLink}>See Details</Button>
+                <Button className='col' onClick={handleLink}>See Details</Button>
             </div>
         </div>
     )

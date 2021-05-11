@@ -1,22 +1,19 @@
 import { NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-const LoginNavbar = () => {
+const LoginNavbar = ({ username, logout }) => {
 
     return (
         <>
             <NavItem>
-              <NavLink tag={Link} to='/'>Home</NavLink>
+              <NavLink className='text-white' tag={Link} to='/'>Encounter Bulder</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to='/login'>Companies</NavLink>
+              <NavLink className='text-white' tag={Link} to={`/${username}`}>My encounters</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to='/signup'>Profile</NavLink>
+              <NavLink className='text-white' tag={Link} to='#' onClick={logout} >Logout</NavLink>
             </NavItem>
-            {/* <NavItem>
-              <NavLink tag={Link} to='#' onClick={handleCLick} >Logout</NavLink>
-            </NavItem> */}
         </>
     )
 }

@@ -35,8 +35,9 @@ const rootReducer = (state=INIT_STATE, action) => {
                 currentEncounter
                 };
         case actions.REMOVE_USER:
-                delete state.user;
-                return {...state};
+                const clone = {...state};
+                clone.user = {};
+                return clone;
         case actions.ADD_USER:
             return {
                 ...state,

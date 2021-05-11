@@ -20,7 +20,7 @@ const Signin = () => {
         e.preventDefault();
         const isLoggedIn = await login(currentinfo);
         if( isLoggedIn ){
-            history.push('/');
+            history.push(`/${currentinfo.username}`);
         }
     }
 

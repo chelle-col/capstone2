@@ -5,10 +5,10 @@ const LogoutNavbar = () => {
     return (
         <>
             <NavItem>
-              <NavLink tag={Link} to='/login'>Login</NavLink>
+              <NavLink className='text-white' tag={Link} to='/login'>Login</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to='/signup'>Sign Up</NavLink>
+              <NavLink className='text-white' tag={Link} to='/signup'>Sign Up</NavLink>
             </NavItem>
         </>
     )
