@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Form } from 'reactstrap';
-import useAuthApi from '../hooks/useAuth';
 import FormInput from './FormInput';
 
-const Signin = () => {
+const Signin = ({ login , errors }) => {
     const [ currentinfo, setCurrentInfo ] = useState({username:'', password: ''});
-    const [ errors, login ] = useAuthApi();
+    
     const history = useHistory();
 
     const handleChange = e => {

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { logoSecondary } from '../styles';
 
 const FormDropdown = ({ header, actions, handleClick, size='lg' }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -8,7 +9,7 @@ const FormDropdown = ({ header, actions, handleClick, size='lg' }) => {
 
     return (
         <Dropdown isOpen={dropdownOpen} toggle={toggle} size={size}>
-            <DropdownToggle caret>
+            <DropdownToggle style={{background: logoSecondary}} caret>
                 {header}
             </DropdownToggle>
             <DropdownMenu>

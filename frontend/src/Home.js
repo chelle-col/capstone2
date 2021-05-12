@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import EncounterDisplay from './homeComponents/EncounterDisplay';
 import useIsStateLoaded from './hooks/useIsStateLoaded';
 
-const UserLanding = () => {
+const UserLanding = ({ hasUser }) => {
 
     const [ monsters, isLoading ] = useIsStateLoaded('monsters');
     const encounter = useSelector(st => st.currentEncounter);
@@ -17,7 +17,7 @@ const UserLanding = () => {
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-3 mx-3'>
-                        <EncounterDisplay encounter={encounter} />
+                        <EncounterDisplay hasUser={hasUser} encounter={encounter} />
                     </div>
                     <div className='col mx-3'>
                         <MonsterList isloading={isLoading} monsters={monsters} />

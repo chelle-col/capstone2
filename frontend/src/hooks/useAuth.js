@@ -11,20 +11,21 @@ const useAuthApi = () => {
                                                         // local storage
 
     // Gets and sets the token from a given user and path
-    async function getToken( user ) {
+    async function getToken( user, path ) {
         try{
-            let result = await BackendApi.login( user );
+            let result = await BackendApi.login( user, path );
             // setLocalToken( user.username, result );
             return result;
         }catch (e) {
-            setErrors(e.response.data.error.message);
+            const err = typeof e.response.data.error.message === 'array' ? e.response.data.error.message[0] : e.response.data.error.message;
+            setErrors(err);
             return UNAUTHORIZED;
         }
     };
 
     // Logs the user in, using getToken
     const login = async ( user ) =>{
-        let token = await getToken( user );
+        let token = await getToken( user, 'login' );
 
         if(token === UNAUTHORIZED){
             return false;
@@ -37,44 +38,17 @@ const useAuthApi = () => {
         return true;
     };
 
-    // // Signs user up using getToken
-    // const signup = async ( user ) => {
-    //     setUser( { username: user.username  } );
-    //     await getToken( user, 'register' );
-    // };
+    // Signs user up using getToken
+    const signup = async ( user ) => {
+        let token = await getToken( user, 'register' );
+        if( token === UNAUTHORIZED ){
+            return false;
+        }
+        dispatch( addUser({ ...user, token }));
+        return true;
+    };
 
-    // // Signs user out of app
-    // const signout = () => {
-    //     setUser(undefined);
-    //     setToken(UNAUTHORIZED);
-    //     removeLocalToken();
-    // };
-
-    // // Updates user
-    // const updateUser = async ( newUser ) =>{
-    //     console.log( newUser, token );
-    //     setUser( await JoblyApi.patchUser( newUser, token ).catch( e => console.log(e.response)));
-    // }
-
-    // // If token changes, get user from api
-    // // **DO NOT ADD USER TO DEPENDANCIES**
-    // useEffect( ()=> {
-    //     async function checkToken() {
-    //         if( token !== UNAUTHORIZED && user ){
-    //             setUser(await JoblyApi.getUser( user.username, token ));
-    //         }else if( token !== UNAUTHORIZED ){
-    //             setUser(await JoblyApi.getUser( getLocalUser(), token ));
-    //         }
-    //     }
-    //     checkToken();
-    // }, [ token ]);
-
-    // // Check for token on load
-    // useEffect( ()=>{
-    //     setToken(getLocalToken( UNAUTHORIZED ));
-    // }, []);
-
-    return [ errors, login ];
+    return [ errors, login, signup ];
 }
 
 export default useAuthApi;

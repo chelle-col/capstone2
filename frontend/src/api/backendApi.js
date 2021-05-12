@@ -23,9 +23,14 @@ class BackendApi {
         return resp.data;
     }
 
-    static async login( user ) {
-        const resp = await axios.post( BASE_API_URL + 'auth/token', 
+    static async login( user, path ) {
+        const resp = await axios.post( BASE_API_URL + `auth/${path}`, 
                                     {...user} );
+        return resp.data;
+    }
+
+    static async signup( user ) {
+        const resp = await axios.post(BASE_API_URL + '/auth/register', {...user});
         return resp.data;
     }
 

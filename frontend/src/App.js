@@ -13,18 +13,20 @@ function App() {
   const user = useSelector( st => st.user );
   const hasUser = user.token !== undefined;
 
+  const [ errors, login, signup ] = useAuthApi();
+
   return (
     <>
     <NavBar hasUser={hasUser} user={user}/>
     <Switch>
       <Route exact path='/'>
-        <Home />
+        <Home hasUser={hasUser}/>
       </Route>
       <Route exact path='/signup'>
-        <SignUp />
+        <SignUp error={errors} signup={signup}/>
       </Route>
       <Route exact path='/login'>
-        <Signin />
+        <Signin errors={errors} login={login}/>
       </Route>
       <Route path='/:username'>
         <UserPage />

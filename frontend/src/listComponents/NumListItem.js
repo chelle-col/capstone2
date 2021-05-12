@@ -21,7 +21,7 @@ const NumListItem = ({ item, update }) => {
 
     return (
         <div className='container'>
-            <div className='row'>
+            <div className='row bg-light rounded m-1'>
                 <UpDownBox numberOf={item.numberOf} increase={increase} decrease={decrease}/>
                 <PartialListItem items={[item.name, item.cr]} />
             </div>
