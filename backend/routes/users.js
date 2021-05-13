@@ -97,8 +97,11 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
  * */
 router.post("/:username/encounter", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
-    const { description } = req.body;
-    const encounter = await Encounters.create( req.params.username, description );
+    const { description, monsters } = req.body;
+    let encounter = await Encounters.create( req.params.username, description );
+    if( monsters ){
+      encounter = await Encounters.putAllMonsters( encounter.id, monsters );
+    }
     return res.status(201).json({ encounter });
   } catch (err) {
     return next(err);

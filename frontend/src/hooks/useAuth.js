@@ -7,14 +7,11 @@ const useAuthApi = () => {
     const UNAUTHORIZED = 'unauthorized';                // the Unauth token
     const [ errors, setErrors ] = useState([]);         // holds any errors from db
     const dispatch = useDispatch();
-    // const [ getLocalToken, setLocalToken, getLocalUser, removeLocalToken ] = useLocalStorage();
-                                                        // local storage
 
     // Gets and sets the token from a given user and path
     async function getToken( user, path ) {
         try{
             let result = await BackendApi.login( user, path );
-            // setLocalToken( user.username, result );
             return result;
         }catch (e) {
             const err = typeof e.response.data.error.message === 'array' ? e.response.data.error.message[0] : e.response.data.error.message;
@@ -25,7 +22,7 @@ const useAuthApi = () => {
 
     // Logs the user in, using getToken
     const login = async ( user ) =>{
-        let token = await getToken( user, 'login' );
+        let token = await getToken( user, 'token' );
 
         if(token === UNAUTHORIZED){
             return false;
@@ -33,7 +30,6 @@ const useAuthApi = () => {
         
         // get user from api 
         const fullUser = await BackendApi.get( user.username, token.token );
-        console.log(fullUser);
         dispatch(addUser({ ...fullUser.user, token }));
         return true;
     };

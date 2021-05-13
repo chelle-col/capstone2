@@ -8,17 +8,35 @@ import Dropdown from '../formComponents/Dropdown';
 import { useState } from 'react';
 import { Button } from 'reactstrap';
 import { logoPrimary, logoSecondary } from '../styles';
+import useApiAuthed from '../hooks/useApiAuthed';
+import { useSelector } from 'react-redux';
 
 const EncounterDisplay = ({ encounter, hasUser }) => {
+    // Grab user from state, using useIsStateLoaded
+    const user = useSelector( st => st.user );
     const monsterInfo = Object.values(encounter);
+    const [ savedEncounter, isSaving, setOutbound ] = useApiAuthed();
     const [ players, setPlayers ] = useState(4);
     const totalXp = monsterInfo.reduce( ( acc, curr ) => acc + calcXp( curr.numberOf, curr.cr ), 0);
     
     const forceUpdate = useForceUpdate();
 
     const nums = [1,2,3,4,5,6,7,8,9,10];
+
     const handleClick = (num) => {
         setPlayers(num);
+    }
+
+    const handleSave = () => {
+        console.log('clicked');
+        // Username authToken monsters [{slug:num}, {slug: num},...]
+        console.log(typeof monsterInfo, monsterInfo.map( m => ({[m.slug]: m.numberOf})))
+        const out = {
+            "username": user.username,
+            "authToken": user.token.token,
+            "monsters": monsterInfo.map( m => ({[m.slug]: m.numberOf}))
+        }
+        setOutbound(out);
     }
 
     return (
@@ -44,7 +62,7 @@ const EncounterDisplay = ({ encounter, hasUser }) => {
                 </div>
                 </div>
                 {hasUser && <div className='row'>
-                    <Button style={{background: logoSecondary}}>Save</Button>
+                    <Button style={{background: logoSecondary}} onClick={handleSave}>Save</Button>
                 </div>}
             </div>
         </>

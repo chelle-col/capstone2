@@ -7,13 +7,14 @@ import Signin from './formComponents/Signin';
 import MonsterDetail from './monster/MonsterDetail';
 import UserPage from './UserPage';
 import { useSelector } from 'react-redux';
+import useAuth from './hooks/useAuth';
 
 function App() {
 
   const user = useSelector( st => st.user );
   const hasUser = user.token !== undefined;
 
-  const [ errors, login, signup ] = useAuthApi();
+  const [ errors, login, signup ] = useAuth();
 
   return (
     <>

@@ -62,7 +62,7 @@ class Encounters {
         await this.checkForEncounter( encounterId );
         await this.removeAllMonsters( encounterId );
         const valuesStrings = monsters.map((_m, idx)=> `($1, $${2 * (idx + 1)}, $${2 * (idx + 1) + 1})`).join(',\n');
-        const values = monsters.map((e) => Object.values(e)).flat();
+        const values = monsters.map((e) => Object.entries(e)).flat();
         const result = await db.query(
             `INSERT INTO ${MONST_ENCOUNT_TABLE}
                 (
@@ -72,7 +72,7 @@ class Encounters {
                 )
                 VALUES ${valuesStrings}
                 RETURNING monster_name, encounter_id, number_of`,
-                [ encounterId, ...values ]
+                [ encounterId, ...values.flat() ]
         )
         const formatedResponse = {
             [result.rows[0].encounter_id]:

@@ -41,6 +41,24 @@ class BackendApi {
                         }});
         return resp.data;
     }
+
+    static async createEncounter( username, authToken, monsters ){
+        const resp = await axios.post(BASE_API_URL + `users/${username}/encounter`,
+        { monsters : monsters} , 
+        {headers : {
+            'authorization': authToken
+        }});
+        return resp.data;
+    }
+
+    static async putEnconter( username, encounterId, monsters, authToken ){
+        const resp = await axios.put(BASE_API_URL + `${username}/encounter/${encounterId}`,
+                    {...monsters},
+                    {headers : {
+                        'authorization': authToken
+                    }});
+        return resp.data;
+    }
 }
 
 export default BackendApi;
