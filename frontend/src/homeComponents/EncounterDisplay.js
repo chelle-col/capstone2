@@ -5,18 +5,21 @@ import PartialListItem from '../listComponents/PartialListItem';
 import { calcXp } from '../helpers';
 import useForceUpdate from '../hooks/useForceUpdate';
 import Dropdown from '../formComponents/Dropdown';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
 import { logoPrimary, logoSecondary } from '../styles';
 import useApiAuthed from '../hooks/useApiAuthed';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addEncounter, addIdToEncounter } from '../redux/actionCreaters';
 
 const EncounterDisplay = ({ encounter, hasUser }) => {
-    // Grab user from state, using useIsStateLoaded
+    const dispatch = useDispatch();
     const user = useSelector( st => st.user );
+    const id = useSelector ( st => st.id );
     const monsterInfo = Object.values(encounter);
     const [ savedEncounter, isSaving, setOutbound ] = useApiAuthed();
     const [ players, setPlayers ] = useState(4);
+    
     const totalXp = monsterInfo.reduce( ( acc, curr ) => acc + calcXp( curr.numberOf, curr.cr ), 0);
     
     const forceUpdate = useForceUpdate();
@@ -28,16 +31,24 @@ const EncounterDisplay = ({ encounter, hasUser }) => {
     }
 
     const handleSave = () => {
-        console.log('clicked');
         // Username authToken monsters [{slug:num}, {slug: num},...]
-        console.log(typeof monsterInfo, monsterInfo.map( m => ({[m.slug]: m.numberOf})))
         const out = {
             "username": user.username,
             "authToken": user.token.token,
             "monsters": monsterInfo.map( m => ({[m.slug]: m.numberOf}))
         }
+        if( id !== undefined){
+            out.id = id;
+        }
         setOutbound(out);
     }
+
+    useEffect( () => {
+        if( savedEncounter !== undefined ) {
+            dispatch(addEncounter(savedEncounter));
+            dispatch(addIdToEncounter(Object.keys(savedEncounter.encounter)))
+        }
+    }, [ savedEncounter ])
 
     return (
         <>
@@ -62,7 +73,7 @@ const EncounterDisplay = ({ encounter, hasUser }) => {
                 </div>
                 </div>
                 {hasUser && <div className='row'>
-                    <Button style={{background: logoSecondary}} onClick={handleSave}>Save</Button>
+                    <Button style={{background: logoSecondary}} disabled={isSaving} onClick={!isSaving ? handleSave : null}>{isSaving ? 'Saving...' : 'Save'}</Button>
                 </div>}
             </div>
         </>

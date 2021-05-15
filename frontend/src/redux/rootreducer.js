@@ -16,10 +16,13 @@ const rootReducer = (state=INIT_STATE, action) => {
         case actions.ADD_ENCOUNTER:
             return {
                 ...state,
-                [action.id] : {
-                    ...action.payload
-                }
+                ...action.payload.encounter
             };
+        case actions.ADD_ID_TO_ENCOUNTER:
+            return {
+                ...state,
+                id: action.payload
+            }
         case actions.CHANGE_ENCOUNTER:
             return {
                 ...state,

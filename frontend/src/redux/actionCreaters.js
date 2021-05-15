@@ -32,3 +32,7 @@ export const changeNumOf = ( monster, numberOf ) => (
 export const removeFromEncounter = ( monster ) => (
     {'type': actions.REMOVE_FROM_ENCOUNTER, 'payload': monster }
 )
+
+export const addIdToEncounter = ( id ) => (
+    {'type': actions.ADD_ID_TO_ENCOUNTER, 'payload': id}
+)

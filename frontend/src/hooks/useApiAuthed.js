@@ -4,12 +4,17 @@ import BackendApi from '../api/backendApi';
 const useAuthApi = () => {
     const [ returnData, setReturnData ] = useState();
     const [ outbound, setOutbound ] = useState();
-    const [ isloading, setIsLoading ] = useState(true);
+    const [ isloading, setIsLoading ] = useState(false);
 
-    // running on start
     useEffect( () => {
         async function get() {
-            let resp = await BackendApi.createEncounter(outbound.username, outbound.authToken, outbound.monsters);
+            setIsLoading(true);
+            let resp;
+            if(outbound.id !== undefined){
+                resp = await BackendApi.putEnconter(outbound.username, outbound.authToken, outbound.monsters, outbound.id);
+            }else{
+                resp = await BackendApi.createEncounter(outbound.username, outbound.authToken, outbound.monsters);            
+            }
 
             setReturnData(resp);
             
