@@ -8,15 +8,12 @@ import Loading from './Loading';
 import { addAllEncounters, changeCurrEncounter, changeEncounter } from './redux/actionCreaters';
 import PartialListItem from './listComponents/PartialListItem';
 import EncouterListItem from './listComponents/EncounterListItem';
+import { Button } from 'reactstrap';
 
 const UserPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector( st => st.user );
-    if( user.username === undefined ){
-        history.push('/')
-    }
-
     const stateEncounters = useSelector( st => st.encounters );
     const [ encounters, encounter, isloading, setOut ] = useApiAuthed();
     const [ del, isDeleteing, setOutDel ] = useApiAuthedDel();
@@ -60,7 +57,6 @@ const UserPage = () => {
 
     const handleClick = e => {
         const id = e.target.parentElement.dataset.id;
-        
         // Triggers getting info from api
         if( stateEncounters[id].monsters === undefined ){
             const out = {
@@ -71,7 +67,8 @@ const UserPage = () => {
             setOut(out);
         } else {
             // Set currentEncounter to chosen encounter
-            console.log('clicked')
+            dispatch(changeCurrEncounter(stateEncounters[id].monsters));
+            history.push('/');
         }
     }
 
@@ -85,13 +82,21 @@ const UserPage = () => {
         e.target.parentElement.remove();
     }
 
+    const createNewEncounter = () => {
+        console.log('clicked')
+        // Set current encounter to empty object
+        dispatch(changeCurrEncounter({}))
+        // Redirect to home
+        history.push('/')
+    }
     return (
         <>
             <h1>User Page</h1>
             <div className='container-fluid'>
                 <div className='row'>
                 <PartialListItem items={['Name', 'Description', 'Id']} />
-                <div className='col-2'></div>
+                <Button onClick={createNewEncounter} className='col-1 bg-warning'>New</Button>
+                <div className='col-1'></div>
                 </div>
                 {encounters.map( e => <EncouterListItem 
                         key={e.id} 

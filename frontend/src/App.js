@@ -1,5 +1,5 @@
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
 import NavBar from './NavBar/NavBar';
 import SignUp from './formComponents/SignUp';
@@ -30,10 +30,13 @@ function App() {
         <Signin errors={errors} login={login}/>
       </Route>
       <Route path='/:username'>
-        <UserPage />
+        { hasUser ? <UserPage /> : <Redirect to='/'/>}
       </Route>
       <Route path='/:monster'>
         <MonsterDetail />
+      </Route>
+      <Route>
+        <Redirect to='/'/>
       </Route>
     </Switch>
     </>
