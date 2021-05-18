@@ -13,7 +13,7 @@ export const removeUser = ( user ) => (
     { 'type': actions.REMOVE_USER, user }
 )
 
-export const changeEncounter = ( id, partialEncounter ) => (
+export const changeEncounter = ( id, partialEncounter ) => ( 
     { 'type': actions.CHANGE_ENCOUNTER, 'payload': { id, partialEncounter }}
 )
 

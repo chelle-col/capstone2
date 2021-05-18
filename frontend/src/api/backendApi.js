@@ -15,7 +15,6 @@ class BackendApi {
     }
 
     static async get( path, authToken='' ){
-        console.log(authToken, 'auth')
         const resp = await axios.get(BASE_API_URL + 'users/' + path,
                         {headers : {
                             'authorization' : authToken
@@ -47,7 +46,7 @@ class BackendApi {
                         {headers : {
                             'authorization': authToken
                         }});
-        return resp.data.encounters;
+        return resp.data.encounter;
     }
 
     static async createEncounter( username, authToken, monsters ){

@@ -137,21 +137,21 @@ class Encounters {
 
         const monsterResults = await db.query(`
             SELECT m.name,
+                m.slug,
                 m.cr,
                 m.size,
                 m.type,
-                m.url,
-                e.number_of
+                e.number_of as "numberOf"
             FROM ${MONST_ENCOUNT_TABLE} AS e
             JOIN monsters as m
-            ON m.name=e.monster_name
+            ON m.slug=e.monster_name
             WHERE e.encounter_id = $1
             `,
             [ encounterId ])
         
         const monsters = monsterResults.rows;
 
-        return {encounterId : { encounter, monsters }};
+        return {[encounterId] : { encounter, monsters }};
     }
 
     // delete encounter

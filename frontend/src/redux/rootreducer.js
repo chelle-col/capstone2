@@ -28,11 +28,14 @@ const rootReducer = (state=INIT_STATE, action) => {
                 id: action.payload
             }
         case actions.CHANGE_ENCOUNTER:
-            return {    // Do i need this one???
+            return {
                 ...state,
-                [action.payload.id]:{
-                    ...state[action.payload.id],
-                    ...action.payload.encounter
+                encounters :{
+                    ...state.encounters,
+                    [action.payload.id]:{
+                        ...state.encounters[action.payload.id],
+                        monsters : action.payload.partialEncounter
+                    }
                 }
             };
         case actions.REMOVE_FROM_ENCOUNTER:

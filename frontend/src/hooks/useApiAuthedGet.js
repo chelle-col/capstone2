@@ -2,38 +2,45 @@ import { useState, useEffect } from 'react';
 import BackendApi from '../api/backendApi';
 
 const useAuthApi = () => {
-    const [ returnData, setReturnData ] = useState();
+    const [ returnDataMulti, setReturnData ] = useState();
+    const [ returnDataSingle, setReturnDataSingle ] = useState();
     const [ outbound, setOutbound ] = useState();
     const [ isloading, setIsLoading ] = useState(true);
 
     useEffect( () => {
+        async function getEncounter() {
+            setIsLoading(true);
+
+            const resp = await BackendApi.getEncounterById(
+                outbound.username,
+                outbound.id,
+                outbound.authToken
+            )
+            setReturnDataSingle(resp);
+            setIsLoading(false);
+        }
+
         async function get() {
             setIsLoading(true);
 
-            let resp;
-            if( outbound.id === undefined ){
-                resp = await BackendApi.getEncounterById(
-                        outbound.username,
-                        outbound.id,
-                        outbound.authToken
-                )
-            } else {
-                 resp = await BackendApi.getEncounters(
-                        outbound.username, 
-                        outbound.authToken
-                );
-            }
+            const resp = await BackendApi.getEncounters(
+                    outbound.username, 
+                    outbound.authToken
+            );
 
             setReturnData(resp);
-            
             setIsLoading(false);
         }
         if(outbound !== undefined){
-            get();
+            if( outbound.id !== undefined){
+                getEncounter();
+            }else{
+                get();
+            }
         }
     }, [ outbound ]);
 
-    return [ returnData, isloading, setOutbound ];
+    return [ returnDataMulti, returnDataSingle, isloading, setOutbound ];
 }
 
 export default useAuthApi;
