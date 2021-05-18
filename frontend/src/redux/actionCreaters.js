@@ -36,3 +36,11 @@ export const removeFromEncounter = ( monster ) => (
 export const addIdToEncounter = ( id ) => (
     {'type': actions.ADD_ID_TO_ENCOUNTER, 'payload': id}
 )
+
+export const addAllEncounters = ( encounters ) => (
+    { 'type': actions.ADD_ALL_ENCOUNTERS, 'payload': encounters }
+)
+
+export const changeCurrEncounter = ( encounter ) => (
+    {'type': actions.CHANGE_CURR_ENCOUNTER, 'payload': encounter}
+)

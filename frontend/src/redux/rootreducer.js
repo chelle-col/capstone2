@@ -3,7 +3,8 @@ import * as actions from './actionTypes';
 const INIT_STATE = {
     monsters : {},
     user: {},
-    currentEncounter: {}
+    currentEncounter: {},
+    encounters : {}
 }
 
 const rootReducer = (state=INIT_STATE, action) => {
@@ -16,7 +17,10 @@ const rootReducer = (state=INIT_STATE, action) => {
         case actions.ADD_ENCOUNTER:
             return {
                 ...state,
-                ...action.payload.encounter
+                encounter : {
+                    ...state.encounter,
+                    ...action.payload.encounter
+                }
             };
         case actions.ADD_ID_TO_ENCOUNTER:
             return {
@@ -24,7 +28,7 @@ const rootReducer = (state=INIT_STATE, action) => {
                 id: action.payload
             }
         case actions.CHANGE_ENCOUNTER:
-            return {
+            return {    // Do i need this one???
                 ...state,
                 [action.payload.id]:{
                     ...state[action.payload.id],
@@ -37,6 +41,13 @@ const rootReducer = (state=INIT_STATE, action) => {
             return {...rest,
                 currentEncounter
                 };
+        case actions.ADD_ALL_ENCOUNTERS:
+            return {
+                ...state,
+                encounters : {
+                    ...action.payload
+                }
+            }
         case actions.REMOVE_USER:
                 const clone = {...state};
                 clone.user = {};
@@ -54,6 +65,13 @@ const rootReducer = (state=INIT_STATE, action) => {
                     [action.payload.slug]:{
                       ...action.payload
                 }
+                }
+            }
+        case actions.CHANGE_CURR_ENCOUNTER:
+            return {
+                ...state,
+                currentEncounter : {
+                    ...action.payload
                 }
             }
         default:

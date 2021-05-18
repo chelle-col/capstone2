@@ -3,14 +3,10 @@ import { useSelector } from 'react-redux';
 import EncounterDisplay from './homeComponents/EncounterDisplay';
 import useIsStateLoaded from './hooks/useIsStateLoaded';
 
-const UserLanding = ({ hasUser }) => {
+const Home = ({ hasUser }) => {
 
-    const [ monsters, isLoading ] = useIsStateLoaded('monsters');
     const encounter = useSelector(st => st.currentEncounter);
-
-    if( isLoading ){
-        return <h2>Loading...</h2>
-    }
+    let [ monsters, isLoading ] = useIsStateLoaded('monsters');
 
     return (
         <>
@@ -20,7 +16,7 @@ const UserLanding = ({ hasUser }) => {
                         <EncounterDisplay hasUser={hasUser} encounter={encounter} />
                     </div>
                     <div className='col mx-3'>
-                        <MonsterList isloading={isLoading} monsters={monsters} />
+                        <MonsterList isLoading={isLoading} monsters={monsters} />
                     </div>
                 </div>
             </div>
@@ -28,4 +24,4 @@ const UserLanding = ({ hasUser }) => {
         )
 }
 
-export default UserLanding;
+export default Home;

@@ -35,11 +35,19 @@ class BackendApi {
     }
 
     static async getEncounters( username, authToken ){
-        const resp = await axios.get(BASE_API_URL + `${username}/encounter`,
+        const resp = await axios.get(BASE_API_URL + `users/${username}/encounter`,
                         {headers : {
                             'authorization': authToken
                         }});
-        return resp.data;
+        return resp.data.encounters;
+    }
+
+    static async getEncounterById( username, encounterId, authToken ){
+        const resp = await axios.get(BASE_API_URL + `users/${username}/encounter/${encounterId}`,
+                        {headers : {
+                            'authorization': authToken
+                        }});
+        return resp.data.encounters;
     }
 
     static async createEncounter( username, authToken, monsters ){
@@ -52,11 +60,19 @@ class BackendApi {
     }
 
     static async putEnconter( username, encounterId, monsters, authToken ){
-        const resp = await axios.put(BASE_API_URL + `${username}/encounter/${encounterId}`,
+        const resp = await axios.put(BASE_API_URL + `users/${username}/encounter/${encounterId}`,
                     {...monsters},
                     {headers : {
                         'authorization': authToken
                     }});
+        return resp.data;
+    }
+
+    static async deleteEncounter( username, encounterId, authToken ){
+        const resp = await axios.delete(BASE_API_URL + `users/${username}/encounter/${encounterId}`,
+        {headers : {
+            'authorization': authToken
+        }});
         return resp.data;
     }
 }

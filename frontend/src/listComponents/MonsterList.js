@@ -1,10 +1,18 @@
 import LineListItem from './LineListItem';
 import { Button } from 'reactstrap';
+// import useIsStateLoaded from '../hooks/useIsStateLoaded';
+import Loading from '../Loading';
 
-const MonsterList = ({ monsters, isloading }) => {
+const MonsterList = ({monsters, isLoading}) => {
 
-    if( isloading ){
-        return <h1>Loading...</h1>
+    // const [ monsters, isLoading ] = useIsStateLoaded('monsters');
+
+    if( isLoading ){
+        return (
+            <>
+                <Loading />
+            </>
+            );
     }
 
     return (
@@ -12,7 +20,7 @@ const MonsterList = ({ monsters, isloading }) => {
             <h2>Monsters</h2>
             
             <div className='container'>
-            <div className='row bg-primary rounded'>
+            <div className='row bg-primary text-white rounded'>
                 <Button className='col'>*</Button>
                 <div className='col'>CR</div>
                 <div className='col'>Size</div>

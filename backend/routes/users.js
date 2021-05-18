@@ -114,7 +114,7 @@ router.post("/:username/encounter", ensureCorrectUserOrAdmin, async function (re
  */
 router.get('/:username/encounter', ensureCorrectUserOrAdmin, async function (req, res, next){
   try{
-    const encounters = Encounters.getAll( req.params.username );
+    const encounters = await Encounters.getAll( req.params.username );
     return res.json({ encounters });
   } catch (err) {
     return next(err);
