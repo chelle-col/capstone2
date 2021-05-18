@@ -14,7 +14,7 @@ const LineListItem = ({ item }) =>{
     }
 
     const handleLink = () => {
-        history.push(`/${item.slug}`)
+        history.push(`/monster/${item.slug}`)
     }
 
     return (

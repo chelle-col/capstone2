@@ -52,7 +52,7 @@ const EncounterDisplay = ({ encounter, hasUser }) => {
 
     return (
         <>
-            <h1>Encounter</h1>
+            <h2>Encounter</h2>
             <div className='container rounded p-2' style={{background: logoPrimary}}>
                 <div className='row'>
                     <div className='col'>

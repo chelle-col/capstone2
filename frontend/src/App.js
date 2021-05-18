@@ -29,11 +29,11 @@ function App() {
       <Route exact path='/login'>
         <Signin errors={errors} login={login}/>
       </Route>
+      <Route path='/monster/:monster'>
+        <MonsterDetail />
+      </Route>
       <Route path='/:username'>
         { hasUser ? <UserPage /> : <Redirect to='/'/>}
-      </Route>
-      <Route path='/:monster'>
-        <MonsterDetail />
       </Route>
       <Route>
         <Redirect to='/'/>

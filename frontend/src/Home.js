@@ -1,4 +1,4 @@
-import MonsterList from './listComponents/MonsterList';
+import MonsterList from './homeComponents/MonsterList';
 import { useSelector } from 'react-redux';
 import EncounterDisplay from './homeComponents/EncounterDisplay';
 import useIsStateLoaded from './hooks/useIsStateLoaded';
