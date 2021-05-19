@@ -1,5 +1,8 @@
 import { Badge } from 'reactstrap';
 
+/** Displays a up and down with number
+ * 
+ */
 const UpDownBox = ({ numberOf, increase, decrease }) => {
     return (
         <div className='col'>

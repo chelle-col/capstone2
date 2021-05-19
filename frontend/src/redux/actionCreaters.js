@@ -1,6 +1,9 @@
 import * as actions from './actionTypes';
 
-
+/**
+ * All Action creater for Action Types
+ * 
+ */
 export const addAllMonsters = ( monsters ) => (
     { 'type': actions.ADD_ALL_MONSTERS, monsters }
 )

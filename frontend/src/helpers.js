@@ -1,8 +1,23 @@
 
+/** Changines the number of monster and cr into the 
+ *  Experience points
+ * 
+ * @param {int} num 
+ * @param {int} cr 
+ * @returns int
+ */
 export const calcXp = (num, cr) => {
     return num * crToXp(cr);
 }
 
+/** Takes the players, number of and level of, and total xp
+ *  returns the difficuty of enounter
+ * 
+ * @param {int} num 
+ * @param {int} lvl 
+ * @param {int} totalXp 
+ * @returns string
+ */
 export const calcDifficulty = (num, lvl, totalXp) => {
     const base = num * levelToDifficulty(lvl);
     if( base > totalXp ){
@@ -19,6 +34,13 @@ export const calcDifficulty = (num, lvl, totalXp) => {
     return 'Super Insane';
 }
 
+
+/** takes in difficulty and returns a 
+ *  bootstrap color
+ * 
+ * @param {string} difficulty 
+ * @returns string
+ */
 export const getColor = difficulty => {
     switch( difficulty ){
         case 'Easy':
@@ -36,6 +58,12 @@ export const getColor = difficulty => {
     }
 }
 
+/** Takes difficulty and 
+ *  returns bootstrap color for text
+ * 
+ * @param {string} difficulty 
+ * @returns string
+ */
 export const getTextColor = difficulty => {
     switch( difficulty ){
         case 'Super Insane':
@@ -47,6 +75,11 @@ export const getTextColor = difficulty => {
 
 export const difficulty = [ 'Easy', 'Medium', 'Hard', 'Deadly', 'Insane'];
 
+/** Takes cr and changes to xp
+ * 
+ * @param {string} cr 
+ * @returns int
+ */
 const crToXp = (cr) => {
     switch( cr ){
         case '0' :
@@ -121,7 +154,12 @@ const crToXp = (cr) => {
             return 0;
     }
 }
-
+/** Takes player level and
+ *  converts to base cr comparison
+ * 
+ * @param {int} lvl 
+ * @returns int
+ */
 const levelToDifficulty = lvl => {
     switch( lvl ){
         case 1:

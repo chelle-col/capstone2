@@ -1,4 +1,7 @@
 
+/** Shows single stat
+ * 
+ */
 const StatCell = ({ stat }) => {
     return (
         <div className='col'>

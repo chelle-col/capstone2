@@ -1,8 +1,10 @@
-// class to use api with backend
 import axios from 'axios';
 
 const BASE_API_URL = 'http://localhost:3001/';
 
+/** Class to use api
+ *  and axios
+ */
 class BackendApi {
     static async getMonsters (){
         const resp = await axios.get(BASE_API_URL + 'monsters/');

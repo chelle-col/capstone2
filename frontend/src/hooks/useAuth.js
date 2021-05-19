@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import BackendApi from '../api/backendApi';
 import { addUser } from '../redux/actionCreaters';
 
+/** Authorizes current user
+ * 
+ */
 const useAuthApi = () => {
     const UNAUTHORIZED = 'unauthorized';                // the Unauth token
     const [ errors, setErrors ] = useState([]);         // holds any errors from db

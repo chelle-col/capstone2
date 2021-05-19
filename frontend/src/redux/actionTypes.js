@@ -1,5 +1,7 @@
 
-
+/**
+ * All the action types for the root reducer
+ */
 export const ADD_ALL_MONSTERS = "ADD_ALL_MONSTERS";
 export const ADD_USER = "ADD_USER";
 export const REMOVE_USER = "REMOVE_USER";

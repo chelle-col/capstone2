@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import BackendApi from './backendApi'
 
+/** Gets a given monster from api
+ * 
+ */
 const useMonsterApi = (slug) => {
     const [ data, setData ] = useState();
     const [ isLoading, setIsLoading ] = useState(true);

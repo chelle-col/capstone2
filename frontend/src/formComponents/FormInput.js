@@ -1,6 +1,8 @@
 import { FormGroup, Label, Input } from "reactstrap";
 
-
+/** Input group to use in form elements
+ * 
+ */
 const FormInput = ({ name, title, type, placeholder, handleChange, value }) => {
     return (
         <div className='m-2'>

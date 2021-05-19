@@ -9,11 +9,13 @@ const INIT_STATE = {
 
 const rootReducer = (state=INIT_STATE, action) => {
     switch (action.type){
+        // Adds all the monsters to state 
         case actions.ADD_ALL_MONSTERS:
             return {
                 ...state,
                 'monsters': {...action.monsters}
             };
+        // Adds enounter to state
         case actions.ADD_ENCOUNTER:
             return {
                 ...state,
@@ -22,11 +24,13 @@ const rootReducer = (state=INIT_STATE, action) => {
                     ...action.payload.encounter
                 }
             };
+        // Adds id of encounter to state
         case actions.ADD_ID_TO_ENCOUNTER:
             return {
                 ...state,
                 id: action.payload
-            }
+            };
+        // Replaces the current encounter
         case actions.CHANGE_ENCOUNTER:
             return {
                 ...state,
@@ -38,28 +42,33 @@ const rootReducer = (state=INIT_STATE, action) => {
                     }
                 }
             };
+        // Removes the monster from encounter
         case actions.REMOVE_FROM_ENCOUNTER:
             const {currentEncounter, ...rest} = state;
             delete currentEncounter[action.payload.slug];
             return {...rest,
                 currentEncounter
                 };
+        // Adds all encounters to state
         case actions.ADD_ALL_ENCOUNTERS:
             return {
                 ...state,
                 encounters : {
                     ...action.payload
                 }
-            }
+            };
+        // Removes user from state
         case actions.REMOVE_USER:
                 const clone = {...state};
                 clone.user = {};
                 return clone;
+        // Adds user to state
         case actions.ADD_USER:
             return {
                 ...state,
                 user : action.user
             };
+        // Adds to current encounter - doesn't replace
         case actions.ADD_TO_CURR:
             return {
                 ...state,
@@ -69,7 +78,8 @@ const rootReducer = (state=INIT_STATE, action) => {
                       ...action.payload
                 }
                 }
-            }
+            };
+        // Adds current encounter - replaces entirely
         case actions.CHANGE_CURR_ENCOUNTER:
             return {
                 ...state,

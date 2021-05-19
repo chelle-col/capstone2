@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
 import BackendApi from '../api/backendApi';
 
+/** Uses authorized routes to get information from api
+ * 
+ */
 const useAuthApi = () => {
+    // Multiple data items to component
     const [ returnDataMulti, setReturnData ] = useState();
+    // Single data item to component
     const [ returnDataSingle, setReturnDataSingle ] = useState();
+    // Data to api
     const [ outbound, setOutbound ] = useState();
+    // If loading
     const [ isloading, setIsLoading ] = useState(true);
 
     useEffect( () => {
+        // Gets single enounter
         async function getEncounter() {
             setIsLoading(true);
 
@@ -19,7 +27,7 @@ const useAuthApi = () => {
             setReturnDataSingle(resp);
             setIsLoading(false);
         }
-
+        // Gets all encounters
         async function get() {
             setIsLoading(true);
 

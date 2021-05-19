@@ -1,6 +1,9 @@
 import { NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+/** Nav bar if user is logged in
+ * 
+ */
 const LoginNavbar = ({ username, logout }) => {
 
     return (

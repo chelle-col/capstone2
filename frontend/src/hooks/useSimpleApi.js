@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import BackendApi from '../api/backendApi';
 
+/** Gets data from api on given path
+ *  Not for use with authentification
+ * 
+ */
 const useSimpleApi = (path, secondPath='') => {
     const [ data, setData ] = useState();
     const [ isloading, setIsLoading ] = useState(true);

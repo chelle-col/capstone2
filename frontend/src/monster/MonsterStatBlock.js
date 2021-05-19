@@ -1,5 +1,8 @@
 import StatCell from './StatCell';
 
+/** Shows all monster stats
+ * 
+ */
 const StatBlock = ({ stats }) => {
     return (
         <div className='row text-center'>

@@ -3,6 +3,11 @@ import { useSelector } from 'react-redux';
 import EncounterDisplay from './homeComponents/EncounterDisplay';
 import useIsStateLoaded from './hooks/useIsStateLoaded';
 
+/** Home Page: Displays the monsters and current encounter
+ * 
+ * @param {boolean} param0 
+ * @returns 
+ */
 const Home = ({ hasUser }) => {
 
     const encounter = useSelector(st => st.currentEncounter);

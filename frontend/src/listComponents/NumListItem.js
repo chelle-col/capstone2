@@ -3,6 +3,9 @@ import UpDownBox from './UpDownBox';
 import { useDispatch } from 'react-redux';
 import { changeNumOf, removeFromEncounter } from '../redux/actionCreaters';
  
+/** Combines partial list itme with up down box for encounter display
+ * 
+ */
 const NumListItem = ({ item, update }) => {
     const dispatch = useDispatch();
 

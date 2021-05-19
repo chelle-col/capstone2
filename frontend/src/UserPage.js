@@ -10,6 +10,12 @@ import PartialListItem from './listComponents/PartialListItem';
 import EncouterListItem from './listComponents/EncounterListItem';
 import { Button } from 'reactstrap';
 
+
+/** User Page: displays user information
+ *  Lists all of the user encounters
+ * 
+ * @returns 
+ */
 const UserPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -18,7 +24,8 @@ const UserPage = () => {
     const [ encounters, encounter, isloading, setOut ] = useApiAuthed();
     const [ del, isDeleteing, setOutDel ] = useApiAuthedDel();
 
-
+    // Sets the outbound information to api
+    // to get the encounter information of the user
     useEffect( ()=>{
         const out = {
             'username': user.username,
@@ -27,6 +34,8 @@ const UserPage = () => {
         setOut(out);
     }, []);
 
+    // After encounters have been fetched from the api
+    // Formats and places into state
     useEffect( () => {
         if(encounters !== undefined){
             // Adding all encounters to state-convert from array to object
@@ -38,6 +47,7 @@ const UserPage = () => {
         }
     }, [encounters]);
 
+    // Gets single encounter from api and places into state
     useEffect( () => {
         if(encounter !== undefined){
             const formatedEncounter = Object.values(encounter)[0];
@@ -88,6 +98,7 @@ const UserPage = () => {
         // Redirect to home
         history.push('/')
     }
+    
     return (
         <>
             <h1>User Page</h1>

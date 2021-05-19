@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { Button, Form } from 'reactstrap';
 import FormInput from './FormInput';
 
+/** Sign in form for users
+ * 
+ */
 const Signin = ({ login , errors }) => {
     const [ currentinfo, setCurrentInfo ] = useState({username:'', password: ''});
     

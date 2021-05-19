@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'reactstrap';
 import FormInput from './FormInput';
 
+/** Sign up form for users
+ * 
+ */
 const SignUp = ({ error, signup }) => {
     const history = useHistory();
     const [ localErrors, setLocalErrors ] = useState([]);

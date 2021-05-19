@@ -1,7 +1,10 @@
 import { useParams } from 'react-router-dom';
 import useMonsterApi from '../api/useMonsterApi';
-import StatBlock from './StatBlock';
+import StatBlock from './MonsterStatBlock';
 
+/** Displays the info from api about monster
+ * 
+ */
 const MonsterDetail = () => {
     const { monster } = useParams();
     const [ isLoading, monsterInfo ] = useMonsterApi(monster);

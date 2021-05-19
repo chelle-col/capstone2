@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { logoSecondary } from '../styles';
 
+/** Dropdown element
+ * 
+ */
 const FormDropdown = ({ header, actions, handleClick, size='lg' }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 

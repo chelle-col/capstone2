@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import BackendApi from '../api/backendApi';
 
+/** Deletes item from api
+ * 
+ */
 const useAuthApi = () => {
+    // Data to client component
     const [ returnData, setReturnData ] = useState();
+    // Data to api
     const [ outbound, setOutbound ] = useState();
+    // If currently getting from api
     const [ isloading, setIsLoading ] = useState(true);
 
     useEffect( () => {

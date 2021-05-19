@@ -6,6 +6,10 @@ import logo from '../logo.png';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../redux/actionCreaters';
 
+/** Nav bar for site
+ *  
+ *  Shows if user is logged in
+ */
 const NavBar = ({ hasUser, user }) => {
   const dispatch = useDispatch();
 

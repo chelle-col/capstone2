@@ -4,6 +4,9 @@ import Loading from '../Loading';
 import { useState } from 'react';
 import Dropdown from '../formComponents/Dropdown';
 
+/** Shows the list of monsters
+ *  Handle pagination
+ */
 const MonsterList = ({monsters, isLoading}) => {
     const [ index, setIndex ] = useState(0);
     const [ numPerPage, setNumPerPage ] = useState(10);

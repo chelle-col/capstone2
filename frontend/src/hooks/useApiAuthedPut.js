@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import BackendApi from '../api/backendApi';
 
+/** Uses authorized routes to put information to api
+ * 
+ */
 const useAuthApi = () => {
+    // Data to component
     const [ returnData, setReturnData ] = useState();
+    // Data to api
     const [ outbound, setOutbound ] = useState();
+    // If loading data
     const [ isloading, setIsLoading ] = useState(false);
 
     useEffect( () => {

@@ -1,4 +1,7 @@
 
+/** Displays array of items in cols
+ * 
+ */
 const PartialListItem = ({ items=[] }) => {
     
     return(

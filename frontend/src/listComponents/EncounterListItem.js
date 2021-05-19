@@ -1,6 +1,9 @@
 import PartialListItem from './PartialListItem';
 import { Button } from 'reactstrap';
 
+/** Displays single item with delete and click functions
+ * 
+ */
 const EncouterListItem = ({ item, handleClick, handleDelete, isLoading }) => {
     return (
         <div className='container my-2'>

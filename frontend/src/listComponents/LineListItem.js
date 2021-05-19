@@ -5,6 +5,10 @@ import PartialListItem from './PartialListItem';
 import { useDispatch } from 'react-redux';
 import { addToCurrentEncounter } from '../redux/actionCreaters';
 
+/** Displays Monster info on Monster List
+ *  with buttons to add to state
+ * 
+ */
 const LineListItem = ({ item }) =>{
     const dispatch = useDispatch();
     const history = useHistory();
