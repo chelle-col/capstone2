@@ -97,8 +97,8 @@ router.delete("/:username", ensureCorrectUserOrAdmin, async function (req, res, 
  * */
 router.post("/:username/encounter", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
-    const { description, monsters } = req.body;
-    let encounter = await Encounters.create( req.params.username, description );
+    const { name, description, monsters } = req.body;
+    let encounter = await Encounters.create( req.params.username, description, name );
     if( monsters ){
       encounter = await Encounters.putAllMonsters( encounter.id, monsters );
     }

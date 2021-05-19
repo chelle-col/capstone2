@@ -3,9 +3,53 @@ export const calcXp = (num, cr) => {
     return num * crToXp(cr);
 }
 
+export const calcDifficulty = (num, lvl, totalXp) => {
+    const base = num * levelToDifficulty(lvl);
+    if( base > totalXp ){
+        return 'Easy';
+    } else if ( base * 2 > totalXp ){
+        return 'Medium';
+    } else if ( base * 3 > totalXp ){
+        return 'Hard';
+    } else if ( base * 4 > totalXp ){
+        return 'Deadly';
+    } else if ( base * 5 > totalXp ){
+        return 'Insane';
+    }
+    return 'Super Insane';
+}
+
+export const getColor = difficulty => {
+    switch( difficulty ){
+        case 'Easy':
+            return 'success';
+        case 'Medium':
+            return 'info';
+        case 'Hard':
+            return 'warning';
+        case 'Deadly':
+            return 'danger';
+        case 'Insane':
+            return 'dark';
+        case 'Super Insane':
+            return 'light'
+    }
+}
+
+export const getTextColor = difficulty => {
+    switch( difficulty ){
+        case 'Super Insane':
+            return 'white';
+        default:
+            return 'black'
+    }
+}
+
+export const difficulty = [ 'Easy', 'Medium', 'Hard', 'Deadly', 'Insane'];
+
 const crToXp = (cr) => {
     switch( cr ){
-        case '0':
+        case '0' :
             return 10;
         case '1/8':
             return 25;
@@ -76,4 +120,50 @@ const crToXp = (cr) => {
         default:
             return 0;
     }
+}
+
+const levelToDifficulty = lvl => {
+    switch( lvl ){
+        case 1:
+            return 25;
+        case 2:
+            return 50;
+        case 3:
+            return 75;
+        case 4:
+            return 125;
+        case 5:
+            return 250;
+        case 6:
+            return 300;
+        case 7:
+            return 360;
+        case 8:
+            return 450;
+        case 9:
+            return 550;
+        case 10:
+            return 600;
+        case 11: 
+            return 800;
+        case 12:
+            return 1000;
+        case 13:
+            return 1100;
+        case 14:
+            return 1250;
+        case 15:
+            return 1400;
+        case 16:
+            return 1600;
+        case 17:
+            return 2000;
+        case 19:
+            return 2400;
+        case 20:
+            return 2800;
+        default:
+            return 0;
+    }
+
 }

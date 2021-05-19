@@ -11,11 +11,19 @@ const useAuthApi = () => {
             setIsLoading(true);
             let resp;
             if(outbound.id !== undefined){
-                resp = await BackendApi.putEnconter(outbound.username, outbound.authToken, outbound.monsters, outbound.id);
+                resp = await BackendApi.putEnconter(
+                        outbound.username, 
+                        outbound.authToken, 
+                        outbound.monsters, 
+                        outbound.id);
             }else{
-                resp = await BackendApi.createEncounter(outbound.username, outbound.authToken, outbound.monsters);            
+                resp = await BackendApi.createEncounter(
+                        outbound.username, 
+                        outbound.authToken, 
+                        outbound.monsters,
+                        outbound.name,
+                        outbound.description);            
             }
-
             setReturnData(resp);
             
             setIsLoading(false);

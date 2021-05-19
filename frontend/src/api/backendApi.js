@@ -49,9 +49,11 @@ class BackendApi {
         return resp.data.encounter;
     }
 
-    static async createEncounter( username, authToken, monsters ){
+    static async createEncounter( username, authToken, monsters, name, description ){
         const resp = await axios.post(BASE_API_URL + `users/${username}/encounter`,
-        { monsters : monsters} , 
+        { monsters : monsters,
+            name,
+            description } , 
         {headers : {
             'authorization': authToken
         }});

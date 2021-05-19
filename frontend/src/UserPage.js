@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import useApiAuthed from './hooks/useApiAuthedGet';
 import useApiAuthedDel from './hooks/useApiAuthDel';
 import Loading from './Loading';
-import { addAllEncounters, changeCurrEncounter, changeEncounter } from './redux/actionCreaters';
+import { addAllEncounters, addIdToEncounter, changeCurrEncounter, changeEncounter } from './redux/actionCreaters';
 import PartialListItem from './listComponents/PartialListItem';
 import EncouterListItem from './listComponents/EncounterListItem';
 import { Button } from 'reactstrap';
@@ -42,9 +42,8 @@ const UserPage = () => {
         if(encounter !== undefined){
             const formatedEncounter = Object.values(encounter)[0];
             // Add monsters to State
-            console.log(Object.values(encounter));
-            console.log(formatedEncounter.encounter.id);
             dispatch(changeEncounter(formatedEncounter.encounter.id, formatedEncounter.monsters))
+            dispatch(addIdToEncounter(formatedEncounter.encounter.id));
             //Change current encounter
             dispatch(changeCurrEncounter(formatedEncounter.monsters));
             history.push('/');

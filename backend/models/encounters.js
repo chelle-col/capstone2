@@ -22,15 +22,17 @@ class Encounters {
     }
 
     // create encouter
-    static async create( username, description ){
+    static async create( username, description, name ){
+        console.log(name, description)
         const result = await db.query(
             `INSERT INTO ${ENCOUNTER_TABLE}
-              ( username, description )
-            VALUES ($1, $2)
-            RETURNING username, description, id`,
+              ( username, description, name )
+            VALUES ($1, $2, $3)
+            RETURNING username, description, name, id`,
             [ 
                 username,
-                description
+                description,
+                name
             ]
         )
 

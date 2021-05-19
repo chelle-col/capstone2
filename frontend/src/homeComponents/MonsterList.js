@@ -7,8 +7,8 @@ import Dropdown from '../formComponents/Dropdown';
 const MonsterList = ({monsters, isLoading}) => {
     const [ index, setIndex ] = useState(0);
     const [ numPerPage, setNumPerPage ] = useState(10);
-    const [ rightActive, setRightActive ] = useState(false);
-    const [ leftActive, setLeftActive ] = useState(true);
+    const [ rightInactive, setRightInactive ] = useState(false);
+    const [ leftInactive, setLeftInactive ] = useState(true);
     const monstersArray = Object.values(monsters);
     const monstersSubArray = monstersArray.slice(index, index + numPerPage);
 
@@ -21,13 +21,13 @@ const MonsterList = ({monsters, isLoading}) => {
     }
 
     const move = val => {
-        setLeftActive(false);
-        setRightActive(false);
+        setLeftInactive(false);
+        setRightInactive(false);
         let moveVal = index + val;
         if( moveVal === 0 ){
-            setRightActive(true);
-        } else if ( moveVal === monstersArray.length ){
-            setLeftActive(true);
+            setLeftInactive(true);
+        } else if ( moveVal >= monstersArray.length - val ){
+            setRightInactive(true);
         }
         setIndex(moveVal);
     }
@@ -64,13 +64,13 @@ const MonsterList = ({monsters, isLoading}) => {
                     <Button 
                         className='my-2 mx-1 col-1 text-white' 
                         onClick={()=> move(-numPerPage)} 
-                        disabled={leftActive}>
+                        disabled={leftInactive}>
                             <i className="fas fa-chevron-left"></i>
                     </Button>
                     <Button 
                         className='my-2 mx-1 col-1 text-white' 
                         onClick={()=> move(numPerPage)} 
-                        disabled={rightActive} >
+                        disabled={rightInactive} >
                             <i className="fas fa-chevron-right"></i>
                     </Button>
                 </div>
