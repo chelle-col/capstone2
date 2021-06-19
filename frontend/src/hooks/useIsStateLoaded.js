@@ -9,7 +9,7 @@ const useIsStateLoaded = ( state ) => {
     const [ isLoading, setIsLoading ] = useState(true);
 
     useEffect( () => {
-        if(JSON.stringify(state) !== '{}' && selectedState !== undefined ){
+        if(JSON.stringify(selectedState) !== '{}' && selectedState !== undefined ){
             setIsLoading(false);
         }
     }, [ selectedState ]);

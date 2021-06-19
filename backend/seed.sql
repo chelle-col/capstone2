@@ -1,7 +1,4 @@
-DROP DATABASE capstone;
-    CREATE DATABASE capstone;
-    \connect capstone;
-    
+   
     CREATE TABLE users (
         username VARCHAR(25) PRIMARY KEY,
         password TEXT NOT NULL,
