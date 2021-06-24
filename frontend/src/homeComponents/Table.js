@@ -30,14 +30,14 @@ const ETTable = ({ data, handleClick, handleNavigation }) => {
             accessor: 'add',
             Cell: ({ cell }) => (
                 // TODO: remove based on what is in current encounter
-                <Button onClick={() => handleClick(cell.row.original)}>+</Button>
+                <Button className='bg-primary' onClick={() => handleClick(cell.row.original)}>+</Button>
             ),
             disableFilters: true
         },
         { Header: 'Details',
         accessor: 'see',
         Cell: ({ cell }) => (
-            <Button onClick={() => handleNavigation(cell.row.original.slug)}><i className="fas fa-info-circle"></i></Button>
+            <Button className='bg-primary' onClick={() => handleNavigation(cell.row.original.slug)}><i className="fas fa-info-circle"></i></Button>
         ),
         disableFilters: true
         }
