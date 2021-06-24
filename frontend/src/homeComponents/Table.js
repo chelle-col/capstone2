@@ -93,8 +93,8 @@ const ETTable = ({ data, handleClick, handleNavigation }) => {
                 })}
             </tbody>
         </Table>
-        <Button disabled={canNextPage} className='mx-1 bg-primary' onClick={() => previousPage()}>Previous</Button>
-        <Button disabled={canPreviousPage} className='mx-1 bg-primary' onClick={() => nextPage()}>Next</Button>
+        <Button disabled={!canPreviousPage} className='mx-1 bg-primary' onClick={() => previousPage()}>Previous</Button>
+        <Button disabled={!canNextPage} className='mx-1 bg-primary' onClick={() => nextPage()}>Next</Button>
     </>
     )
 }
