@@ -45,7 +45,8 @@ const rootReducer = (state=INIT_STATE, action) => {
         // Removes the monster from encounter
         case actions.REMOVE_FROM_ENCOUNTER:
             const {currentEncounter, ...rest} = state;
-            delete currentEncounter[action.payload.slug];
+            const aSlug = action.payload.slug;
+            delete currentEncounter[aSlug];
             return {...rest,
                 currentEncounter
                 };

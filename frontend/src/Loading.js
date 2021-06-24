@@ -1,7 +1,6 @@
 
 /** Loading: demonstrates the loading component
  * 
- * @returns 
  */
 const Loading = () => {
     return ( 

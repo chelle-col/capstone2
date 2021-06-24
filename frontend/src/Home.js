@@ -10,14 +10,12 @@ import EncounterDisplay from './homeComponents/EncounterDisplay';
  */
 const Home = ({ hasUser }) => {
 
-    const encounter = useSelector(st => st.currentEncounter);
-
     return (
         <>
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-3 mx-3'>
-                        <EncounterDisplay hasUser={hasUser} encounter={encounter} />
+                        <EncounterDisplay hasUser={hasUser} />
                     </div>
                     <div className='col mx-3'>
                         <MonsterList />

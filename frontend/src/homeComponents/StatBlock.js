@@ -7,14 +7,15 @@ import Dropdown from '../formComponents/Dropdown';
 import PartialListItem from '../listComponents/PartialListItem';
 import NumListItem from '../listComponents/NumListItem';
 
-
 /** Displays the Stats of the Encounter
  * 
- *  @param monsterInfo array of monsters
+ *  @param encounter array of monsters
  */
-const StatBlock = ({ monsterInfo }) => {
+const StatBlock = ({ encounter }) => {
+    const monsterInfo = Object.values(encounter) || [];
+    console.log(encounter);
+    console.log(monsterInfo);
     const totalXp = monsterInfo.reduce( ( acc, curr ) => acc + calcXp( curr.numberOf, curr.cr ), 0);
-
     const forceUpdate = useForceUpdate();
 
     const [ players, setPlayers ] = useState(4);
@@ -52,7 +53,7 @@ const StatBlock = ({ monsterInfo }) => {
                 <PartialListItem items={[ ' ', 'Name', "CR"]}/>
                 </div>
                 <div className='row'>
-                {monsterInfo.map( m => <NumListItem key={m.slug} item={m} update={forceUpdate}/>)}
+                {monsterInfo && monsterInfo.map( m => <NumListItem key={m.slug} item={m} forceUpdate={forceUpdate}/>)}
                 <div className='col'>
                     <PartialListItem items={['Total Experience: ', totalXp]}/>
                 </div>

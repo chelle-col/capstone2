@@ -6,7 +6,7 @@ import { changeNumOf, removeFromEncounter } from '../redux/actionCreaters';
 /** Combines partial list itme with up down box for encounter display
  * 
  */
-const NumListItem = ({ item, update }) => {
+const NumListItem = ({ item, forceUpdate }) => {
     const dispatch = useDispatch();
 
     const increase = ( ) => {
@@ -16,7 +16,7 @@ const NumListItem = ({ item, update }) => {
     const decrease = ( ) => {
         if( item.numberOf - 1 === 0){
             dispatch(removeFromEncounter(item));
-            update();
+            forceUpdate();
         } else {
             dispatch(changeNumOf(item, item.numberOf - 1));
         }

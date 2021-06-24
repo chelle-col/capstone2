@@ -4,7 +4,7 @@ import { useState } from "react"
  * 
  */
 const useForceUpdate = () => {
-    const [ value, setValue ] = useState(0);
+    const [ , setValue ] = useState(0);
     return ()=> setValue( value => value + 1);
 }
 

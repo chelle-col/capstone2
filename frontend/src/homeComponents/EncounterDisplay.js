@@ -13,7 +13,8 @@ import StatBlock from './StatBlock';
  * 
  *   @param enounter, hasUser
  */
-const EncounterDisplay = ({ encounter, hasUser }) => {
+const EncounterDisplay = ({ hasUser }) => {
+    const encounter = useSelector(st => st.currentEncounter);
     const dispatch = useDispatch();
     const user = useSelector( st => st.user );
     const id = useSelector ( st => st.id );
@@ -64,7 +65,7 @@ const EncounterDisplay = ({ encounter, hasUser }) => {
         <>
             <h2>Encounter</h2>
             <div className='container rounded p-2' style={{background: logoPrimary}}>
-                <StatBlock monsterInfo={monsterInfo}/>
+                <StatBlock encounter={encounter}/>
                 <ModalSave 
                     toggle={toggleModal} 
                     modal={modalShow} 
