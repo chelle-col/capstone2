@@ -4,7 +4,9 @@
  */
 const Loading = () => {
     return ( 
-            <h1 className='text-white'>Loading...</h1>
+        <>
+            <h3>Loading <span class="spinner-border" role="status"></span></h3>
+        </>
     )
 }
 

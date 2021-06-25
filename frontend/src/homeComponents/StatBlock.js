@@ -13,8 +13,6 @@ import NumListItem from '../listComponents/NumListItem';
  */
 const StatBlock = ({ encounter }) => {
     const monsterInfo = Object.values(encounter) || [];
-    console.log(encounter);
-    console.log(monsterInfo);
     const totalXp = monsterInfo.reduce( ( acc, curr ) => acc + calcXp( curr.numberOf, curr.cr ), 0);
     const forceUpdate = useForceUpdate();
 
