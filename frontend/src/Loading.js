@@ -5,7 +5,7 @@
 const Loading = () => {
     return ( 
         <>
-            <h3>Loading <span class="spinner-border" role="status"></span></h3>
+            <h3>Loading <span className="spinner-border" role="status"></span></h3>
         </>
     )
 }

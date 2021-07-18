@@ -32,7 +32,7 @@ const SignUp = ({ error, signup }) => {
         if ( errs.length === 0 ){
             const isLoggedIn = await signup( currentinfo );
             if( isLoggedIn ){
-                history.push(`/${currentinfo.username}`)
+                history.push(`/${currentinfo.username}`);
             }
         }
     }
