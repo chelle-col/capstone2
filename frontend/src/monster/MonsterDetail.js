@@ -5,6 +5,11 @@ import Actions from './Actions';
 import Reactions from './Reactions';
 import LegendaryActions from './LegendaryActions';
 import SpecialAbilites from './SpecialAbilites';
+import MiscInfo  from './MiscInfo';
+import ArmorClass from './ArmorClass';
+import PartialInfo from './PartialInfo';
+import Speed from './Speed';
+import Loading from '../Loading';
 
 /** Displays the info from api about monster
  * 
@@ -14,7 +19,7 @@ const MonsterDetail = () => {
     const [ isLoading, monsterInfo ] = useMonsterApi(monster);
 
     if(isLoading){
-       return <h1>Loading...</h1>
+       return <Loading />
     }
 
     const statInfo = {'strength': monsterInfo.strength,
@@ -25,23 +30,18 @@ const MonsterDetail = () => {
 
     console.log(monsterInfo);
 
-    // Saving Throws
-    // Skills
-    // Senses
-    // Languages
-    // Challenge Rating
-    // Damges Resistances
-    // Damage Imunites
-    // Damage Vulnerablites
-    // Condition Imunites
+    // Saving Throws array
+    // Skills array
+
     return (
         <div className='container'>
             <h1>{monsterInfo.name}</h1>
-            <h3>{monsterInfo.size} {monsterInfo.type}{monsterInfo.subtype}, {monsterInfo.alignment}</h3>
-            <p>Armor Class: {monsterInfo.armor_class} ({monsterInfo.armor_desc})</p>
-            <p>Hit Points: {monsterInfo.hit_points}</p>
-            <p>Speed: {monsterInfo.speed.walk} ft</p>
+            <h3>{monsterInfo.size} {monsterInfo.type}{monsterInfo.subtype && ` (${monsterInfo.subtype})`}, {monsterInfo.alignment}</h3>
+            <ArmorClass armorClass={monsterInfo.armor_class} desc={monsterInfo.armor_desc} />
+            <PartialInfo name='Hit Points' info={`${monsterInfo.hit_points} (${monsterInfo.hit_dice})`}/>
+            <Speed speed={monsterInfo.speed} />
             <StatBlock stats={statInfo} />
+            <MiscInfo info={monsterInfo}/>
             <SpecialAbilites abilities={monsterInfo.special_abilities} />
             <Actions actions={monsterInfo.actions} />
             {monsterInfo.reactions && <Reactions reactions={monsterInfo.reactions} />}
