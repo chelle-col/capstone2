@@ -1,8 +1,8 @@
 
-import useForceUpdate from '../hooks/useForceUpdate';
+import useForceUpdate from '../../hooks/useForceUpdate';
 import { useState } from 'react';
-import { logoPrimary } from '../styles';
-import { calcDifficulty, calcXp, getColor, getTextColor } from '../helpers/helpers';
+import { logoPrimary } from '../../styles';
+import { calcDifficulty, calcXp, getColor, getTextColor } from '../../helpers/helpers';
 import Dropdown from '../formComponents/Dropdown';
 import PartialListItem from '../listComponents/PartialListItem';
 import NumListItem from '../listComponents/NumListItem';

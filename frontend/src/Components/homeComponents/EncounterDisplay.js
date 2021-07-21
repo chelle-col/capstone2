@@ -1,10 +1,10 @@
 
 import { useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
-import { logoPrimary, logoSecondary } from '../styles';
-import useApiAuthed from '../hooks/useApiAuthedPut';
+import { logoPrimary, logoSecondary } from '../../styles';
+import useApiAuthed from '../../hooks/useApiAuthedPut';
 import { useSelector, useDispatch } from 'react-redux';
-import { addEncounter, addIdToEncounter } from '../redux/actionCreaters';
+import { addEncounter, addIdToEncounter } from '../../redux/actionCreaters';
 import ModalSave from '../formComponents/ModalSave';
 import StatBlock from './StatBlock';
 

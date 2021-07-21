@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import FormInput from './FormInput';
-import { logoPrimary } from '../styles';
+import { logoPrimary } from '../../styles';
 
 /** Modal Popup to get name and description from user about encounter
  *  Before save

@@ -2,7 +2,7 @@ import { Navbar, Nav, NavbarBrand } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import LoginNavbar from './LoginNavbar';
 import LogoutNavbar from './LogoutNavbar';
-import logo from '../logo.png';
+import logo from '../../logo.png';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../../redux/actionCreaters';
 

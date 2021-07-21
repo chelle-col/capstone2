@@ -1,10 +1,10 @@
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
-import NavBar from './NavBar/NavBar';
-import SignUp from './formComponents/SignUp';
-import Signin from './formComponents/Signin';
-import MonsterDetail from './monster/MonsterDetail';
+import NavBar from './Components/NavBar/NavBar';
+import SignUp from './Components/formComponents/SignUp';
+import Signin from './Components/formComponents/Signin';
+import MonsterDetail from './Components/monster/MonsterDetail';
 import UserPage from './UserPage';
 import { useSelector } from 'react-redux';
 import useAuth from './hooks/useAuth';

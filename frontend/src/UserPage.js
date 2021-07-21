@@ -6,8 +6,8 @@ import useApiAuthed from './hooks/useApiAuthedGet';
 import useApiAuthedDel from './hooks/useApiAuthDel';
 import Loading from './Loading';
 import { addAllEncounters, addIdToEncounter, changeCurrEncounter, changeEncounter } from './redux/actionCreaters';
-import PartialListItem from './listComponents/PartialListItem';
-import EncouterListItem from './listComponents/EncounterListItem';
+import PartialListItem from './Components/listComponents/PartialListItem';
+import EncouterListItem from './Components/listComponents/EncounterListItem';
 import { Button } from 'reactstrap';
 
 

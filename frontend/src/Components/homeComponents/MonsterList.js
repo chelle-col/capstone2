@@ -1,8 +1,8 @@
-import Loading from '../Loading';
+import Loading from '../../Loading';
 import ETTable from './Table';
-import useIsStateLoaded from '../hooks/useIsStateLoaded';
+import useIsStateLoaded from '../../hooks/useIsStateLoaded';
 import { useDispatch } from 'react-redux';
-import { addToCurrentEncounter } from '../redux/actionCreaters';
+import { addToCurrentEncounter } from '../../redux/actionCreaters';
 import { useHistory } from 'react-router';
 
 /** Shows the list of monsters

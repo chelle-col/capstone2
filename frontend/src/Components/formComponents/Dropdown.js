@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import { logoSecondary } from '../styles';
+import { logoSecondary } from '../../styles';
 
 /** Dropdown element
  * 
