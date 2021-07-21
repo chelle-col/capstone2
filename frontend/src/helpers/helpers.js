@@ -20,7 +20,7 @@ export const calcXp = (num, cr) => {
  */
 export const calcDifficulty = (num, lvl, totalXp) => {
     const base = num * levelToDifficulty(lvl);
-    if( base > totalXp ){
+    if( base < totalXp ){
         return 'Easy';
     } else if ( base * 2 > totalXp ){
         return 'Medium';
