@@ -1,4 +1,4 @@
-
+import { capitalize } from "./capitalize";
 /** Displays Speed
  * 
  */
@@ -9,12 +9,12 @@ const Speed = ({ speed }) => {
         return `${capitalize(type)}: ${info[type]}ft`
     }
 
-    const capitalize = ( str ) => {
-        const firstLetter = str.slice(0, 1);
-        return firstLetter.toUpperCase() + str.slice(1);
-    }
+    // const capitalize = ( str ) => {
+    //     const firstLetter = str.slice(0, 1);
+    //     return firstLetter.toUpperCase() + str.slice(1);
+    // }
     
-    const speedTypes = ['walk', 'climb', 'swim'];
+    const speedTypes = ['walk', 'climb', 'swim', 'fly'];
 
     const speeds = speedTypes.map( s => getSpeed(s, speed)).filter( s => s !== null).join(', ');
 

@@ -1,4 +1,5 @@
 import Paragraph from "./Paragraph";
+import Title from "./Title";
 /** Shows reactions a monster can take
  * 
  */
@@ -6,7 +7,7 @@ import Paragraph from "./Paragraph";
 const Reactions = ({ reactions }) => {
     return (
         <>
-            <h3>Reactions</h3>
+            <Title title={'Reactions'} />
             {reactions.map( (p, idx) => <Paragraph key={idx} title={p.name} para={p.desc} />)}
         </>
     )

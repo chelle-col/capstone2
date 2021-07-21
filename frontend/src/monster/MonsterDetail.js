@@ -9,6 +9,8 @@ import MiscInfo  from './MiscInfo';
 import ArmorClass from './ArmorClass';
 import PartialInfo from './PartialInfo';
 import Speed from './Speed';
+import Skills from './Skills';
+import SavingThrows from './SavingThrows';
 import Loading from '../Loading';
 
 /** Displays the info from api about monster
@@ -30,9 +32,6 @@ const MonsterDetail = () => {
 
     console.log(monsterInfo);
 
-    // Saving Throws array
-    // Skills array
-
     return (
         <div className='container'>
             <h1>{monsterInfo.name}</h1>
@@ -41,7 +40,9 @@ const MonsterDetail = () => {
             <PartialInfo name='Hit Points' info={`${monsterInfo.hit_points} (${monsterInfo.hit_dice})`}/>
             <Speed speed={monsterInfo.speed} />
             <StatBlock stats={statInfo} />
+            <SavingThrows info={monsterInfo} stats={statInfo}/>
             <MiscInfo info={monsterInfo}/>
+            <Skills skills={monsterInfo.skills} />
             <SpecialAbilites abilities={monsterInfo.special_abilities} />
             <Actions actions={monsterInfo.actions} />
             {monsterInfo.reactions && <Reactions reactions={monsterInfo.reactions} />}

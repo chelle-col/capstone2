@@ -1,4 +1,5 @@
 import Paragraph from "./Paragraph";
+import Title from "./Title";
 
 /** Shows special abilites a monster has
  * 
@@ -7,7 +8,7 @@ import Paragraph from "./Paragraph";
 const SpecialAbilites = ({ abilities }) => {
     return (
         <div className='border border-secondary rounded my-2 p-1'>
-            <h3>Special Abilites</h3>
+            <Title title={'Special Abilites'} />
             {Object.values(abilities).map( (p, idx) => <Paragraph key={idx} para={p.desc} title={p.name} />)}
         </div>
     )
