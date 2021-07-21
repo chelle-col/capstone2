@@ -13,6 +13,9 @@ const ETTable = ({ data, handleClick, handleNavigation }) => {
         () => [
           { Header: 'Name',
             accessor: 'name', // accessor is the "key" in the data
+            Cell: ({ cell }) => (
+                <Button className='bg-primary' onClick={() => handleNavigation(cell.row.original.slug)}>{cell.row.original.name}</Button>
+            ),
             Filter: ColumnFilter
         },
         { Header: 'Cr',
@@ -34,13 +37,6 @@ const ETTable = ({ data, handleClick, handleNavigation }) => {
                 <Button className='bg-primary' onClick={() => handleClick(cell.row.original)}>+</Button>
             ),
             disableFilters: true
-        },
-        { Header: 'Details',
-        accessor: 'see',
-        Cell: ({ cell }) => (
-            <Button className='bg-primary' onClick={() => handleNavigation(cell.row.original.slug)}><i className="fas fa-info-circle"></i></Button>
-        ),
-        disableFilters: true
         }
         ], []);
 

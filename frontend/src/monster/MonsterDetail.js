@@ -30,7 +30,7 @@ const MonsterDetail = () => {
                         'wisdom': monsterInfo.wisdom,
                         'charisma': monsterInfo.charisma}
 
-    console.log(monsterInfo);
+    // console.log(monsterInfo);
 
     return (
         <div className='container'>
