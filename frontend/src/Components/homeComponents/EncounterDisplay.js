@@ -70,11 +70,16 @@ const EncounterDisplay = ({ hasUser }) => {
                     toggle={toggleModal} 
                     modal={modalShow} 
                     submit={handleModalSave}/>
-                {hasUser && <div className='row'>
+                {hasUser && <div>
                     <Button style={{background: logoSecondary}} 
                         disabled={isSaving} 
                         onClick={!isSaving ? handleSave : null}>
                             {isSaving ? 'Saving...' : 'Save'}
+                    </Button>
+                    <Button className='bg-warning'
+                        disabled={isSaving} 
+                        onClick={console.log('running')}>
+                            <i className="fas fa-play-circle"></i>
                     </Button>
                 </div>}
             </div>

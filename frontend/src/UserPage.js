@@ -98,10 +98,12 @@ const UserPage = () => {
         // Redirect to home
         history.push('/')
     }
+
+    // TODO refactor to use table layout
     
     return (
         <>
-            <h1>User Page</h1>
+            <h1>{user.username}</h1>
             <div className='container-fluid'>
                 <div className='row'>
                 <PartialListItem items={['Name', 'Description', 'Id']} />

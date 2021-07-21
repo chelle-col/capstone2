@@ -11,6 +11,8 @@ import thunk from "redux-thunk";
 import rootReducer from './redux/rootreducer';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import { addMonstersFromApi } from './api/apiStore';
 
@@ -21,14 +23,18 @@ const store = createStore(
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ));
 
-  store.dispatch(addMonstersFromApi());
+const persistor = persistStore(store);
+
+store.dispatch(addMonstersFromApi());
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

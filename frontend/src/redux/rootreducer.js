@@ -1,4 +1,6 @@
 import * as actions from './actionTypes';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const INIT_STATE = {
     monsters : {},
@@ -93,4 +95,11 @@ const rootReducer = (state=INIT_STATE, action) => {
     }
 }
 
-export default rootReducer;
+const persistConfig = {
+    key: 'root',
+    storage
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default persistedReducer;
