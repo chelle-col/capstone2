@@ -6,6 +6,7 @@ import SignUp from './Components/formComponents/SignUp';
 import Signin from './Components/formComponents/Signin';
 import MonsterDetail from './MonsterDetail';
 import UserPage from './UserPage';
+import EncounterRunner from './EncounterRunner';
 import { useSelector } from 'react-redux';
 import useAuth from './hooks/useAuth';
 
@@ -34,6 +35,9 @@ function App() {
       </Route>
       <Route path='/:username'>
         { hasUser ? <UserPage /> : <Redirect to='/'/>}
+      </Route>
+      <Route path='/:id'>
+        <EncounterRunner />
       </Route>
       <Route>
         <Redirect to='/'/>

@@ -59,7 +59,11 @@ const EncounterDisplay = ({ hasUser }) => {
             dispatch(addEncounter(savedEncounter));
             dispatch(addIdToEncounter(Object.keys(savedEncounter.encounter)))
         }
-    }, [ savedEncounter ])
+    }, [ savedEncounter ]);
+
+    const handleNavRunner = () => {
+        console.log('runner')
+    }
 
     return (
         <>
@@ -71,14 +75,15 @@ const EncounterDisplay = ({ hasUser }) => {
                     modal={modalShow} 
                     submit={handleModalSave}/>
                 {hasUser && <div>
-                    <Button style={{background: logoSecondary}} 
+                    <Button className='m-1'
+                        style={{background: logoSecondary}} 
                         disabled={isSaving} 
                         onClick={!isSaving ? handleSave : null}>
                             {isSaving ? 'Saving...' : 'Save'}
                     </Button>
-                    <Button className='bg-warning'
+                    <Button className='bg-warning m-1'
                         disabled={isSaving} 
-                        onClick={console.log('running')}>
+                        onClick={handleNavRunner}>
                             <i className="fas fa-play-circle"></i>
                     </Button>
                 </div>}

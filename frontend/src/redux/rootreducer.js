@@ -97,7 +97,9 @@ const rootReducer = (state=INIT_STATE, action) => {
 
 const persistConfig = {
     key: 'root',
-    storage
+    storage,
+    blacklist: ['monster', 'currentEncounter', 'encounters'],
+    whitelist: ['user']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

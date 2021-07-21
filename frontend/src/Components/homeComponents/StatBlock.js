@@ -22,6 +22,7 @@ const StatBlock = ({ encounter }) => {
     const nums = [1,2,3,4,5,6,7,8,9,10];
     const levels = [...nums, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     const difficulty = calcDifficulty(players, level, totalXp);
+    console.log(difficulty)
     
     const handleClick = (num) => {
         setPlayers(num);
@@ -59,8 +60,8 @@ const StatBlock = ({ encounter }) => {
                     <PartialListItem items={['Experience Per Player: ', totalXp/players]} />
                 </div>
                 <div className='row'>
-                <div className={`col-4 bg-${getColor(difficulty)} rounded m-2`} style={{color: getTextColor(difficulty)}}>
-                    <PartialListItem items={[difficulty]} />
+                <div className={`col-4 bg-${difficulty.background} rounded m-2`} style={{color: difficulty.text}}>
+                    <PartialListItem items={[difficulty.name]} />
                 </div>
                 </div>
             </div>

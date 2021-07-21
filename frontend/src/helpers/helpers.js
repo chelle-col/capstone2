@@ -20,60 +20,44 @@ export const calcXp = (num, cr) => {
  */
 export const calcDifficulty = (num, lvl, totalXp) => {
     const base = num * levelToDifficulty(lvl);
-    if( base < totalXp ){
-        return 'Easy';
+    if( base > totalXp ){
+        return {
+            name: 'Easy',
+            background: 'success',
+            text: 'black'
+        };
     } else if ( base * 2 > totalXp ){
-        return 'Medium';
+        return {
+            name: 'Medium',
+            background: 'info',
+            text: 'black'
+        };
     } else if ( base * 3 > totalXp ){
-        return 'Hard';
+        return {
+            name: 'Hard',
+            background: 'warning',
+            text: 'black'
+        };
     } else if ( base * 4 > totalXp ){
-        return 'Deadly';
+        return {
+            name: 'Deadly',
+            background: 'danger',
+            text: 'black'
+        };
     } else if ( base * 5 > totalXp ){
-        return 'Insane';
-    }
-    return 'Super Insane';
+        return {
+            name: 'Insane',
+            background: 'dark',
+            text: 'black'
+        };
+    } else{
+    return {
+        name: 'Super Insane',
+        background: 'light',
+        num: base,
+        tp: totalXp 
+    }};
 }
-
-
-/** takes in difficulty and returns a 
- *  bootstrap color
- * 
- * @param {string} difficulty 
- * @returns string
- */
-export const getColor = difficulty => {
-    switch( difficulty ){
-        case 'Easy':
-            return 'success';
-        case 'Medium':
-            return 'info';
-        case 'Hard':
-            return 'warning';
-        case 'Deadly':
-            return 'danger';
-        case 'Insane':
-            return 'dark';
-        case 'Super Insane':
-            return 'light'
-    }
-}
-
-/** Takes difficulty and 
- *  returns bootstrap color for text
- * 
- * @param {string} difficulty 
- * @returns string
- */
-export const getTextColor = difficulty => {
-    switch( difficulty ){
-        case 'Super Insane':
-            return 'white';
-        default:
-            return 'black'
-    }
-}
-
-export const difficulty = [ 'Easy', 'Medium', 'Hard', 'Deadly', 'Insane'];
 
 /** Takes cr and changes to xp
  * 
