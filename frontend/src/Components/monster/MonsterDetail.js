@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import useMonsterApi from '../api/useMonsterApi';
+import useMonsterApi from '../../api/useMonsterApi';
 import StatBlock from './MonsterStatBlock';
 import Actions from './Actions';
 import Reactions from './Reactions';
@@ -11,7 +11,7 @@ import PartialInfo from './PartialInfo';
 import Speed from './Speed';
 import Skills from './Skills';
 import SavingThrows from './SavingThrows';
-import Loading from '../Loading';
+import Loading from '../../Loading';
 
 /** Displays the info from api about monster
  * 

@@ -4,7 +4,7 @@ import LoginNavbar from './LoginNavbar';
 import LogoutNavbar from './LogoutNavbar';
 import logo from '../logo.png';
 import { useDispatch } from 'react-redux';
-import { removeUser } from '../redux/actionCreaters';
+import { removeUser } from '../../redux/actionCreaters';
 
 /** Nav bar for site
  *  

@@ -1,7 +1,7 @@
 import { Button }from 'reactstrap';
 import { useMemo } from 'react';
 import { useTable, useFilters, usePagination } from 'react-table';
-import ColumnFilter from '../helpers/ColumnFilter';
+import ColumnFilter from '../../helpers/ColumnFilter';
 import SubTable from '../listComponents/SubTable'
 
 const ETTable = ({ data, handleClick, handleNavigation }) => {
