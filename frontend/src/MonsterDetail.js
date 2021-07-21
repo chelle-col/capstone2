@@ -1,17 +1,17 @@
 import { useParams } from 'react-router-dom';
-import useMonsterApi from '../../api/useMonsterApi';
-import StatBlock from './MonsterStatBlock';
-import Actions from './Actions';
-import Reactions from './Reactions';
-import LegendaryActions from './LegendaryActions';
-import SpecialAbilites from './SpecialAbilites';
-import MiscInfo  from './MiscInfo';
-import ArmorClass from './ArmorClass';
-import PartialInfo from './PartialInfo';
-import Speed from './Speed';
-import Skills from './Skills';
-import SavingThrows from './SavingThrows';
-import Loading from '../../Loading';
+import useMonsterApi from './api/useMonsterApi';
+import StatBlock from './Components/monster/MonsterStatBlock';
+import Actions from './Components/monster/Actions';
+import Reactions from './Components/monster/Reactions';
+import LegendaryActions from './Components/monster/LegendaryActions';
+import SpecialAbilites from './Components/monster/SpecialAbilites';
+import MiscInfo  from './Components/monster/MiscInfo';
+import ArmorClass from './Components/monster/ArmorClass';
+import PartialInfo from './Components/monster/PartialInfo';
+import Speed from './Components/monster/Speed';
+import Skills from './Components/monster/Skills';
+import SavingThrows from './Components/monster/SavingThrows';
+import Loading from './Loading';
 
 /** Displays the info from api about monster
  * 

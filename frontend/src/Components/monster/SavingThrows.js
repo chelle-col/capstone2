@@ -16,7 +16,7 @@ const SavingThrows = ({ info, stats }) => {
     const savingThrowsArr = Object.entries(stats);
     const savingThrowsStrs = savingThrowsArr.map( s => `${capitalize(s[0])} ${compareThrows(s[0], info, getModifier(s[1]))}`)
 
-    return <p><b>Saving Throws: {savingThrowsStrs.join(', ')}</b></p>
+    return <p className='m-0'><b>Saving Throws: {savingThrowsStrs.join(', ')}</b></p>
 }
 
 export default SavingThrows;

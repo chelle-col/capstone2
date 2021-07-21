@@ -8,7 +8,7 @@ const PartialInfo = ({ name, info }) => {
     if(!info) return null;
 
     return (
-        <p><b>{name}:</b> {info}</p>
+        <p className='m-0'><b>{name}:</b> {info}</p>
     )
 }
 

@@ -4,7 +4,7 @@ import Home from './Home';
 import NavBar from './Components/NavBar/NavBar';
 import SignUp from './Components/formComponents/SignUp';
 import Signin from './Components/formComponents/Signin';
-import MonsterDetail from './Components/monster/MonsterDetail';
+import MonsterDetail from './MonsterDetail';
 import UserPage from './UserPage';
 import { useSelector } from 'react-redux';
 import useAuth from './hooks/useAuth';
