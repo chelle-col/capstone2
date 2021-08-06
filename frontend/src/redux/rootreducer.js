@@ -6,7 +6,8 @@ const INIT_STATE = {
     monsters : {},
     user: {},
     currentEncounter: {},
-    encounters : {}
+    encounters : {},
+    numberPlayers : 4
 }
 
 const rootReducer = (state=INIT_STATE, action) => {
@@ -89,6 +90,11 @@ const rootReducer = (state=INIT_STATE, action) => {
                 currentEncounter : {
                     ...action.payload
                 }
+            }
+        case actions.CHANGE_NUMBER_PLAYERS:
+            return {
+                ...state,
+                numberPlayers : action.payload
             }
         default:
             return state; 

@@ -1,7 +1,6 @@
 import { Table } from 'reactstrap';
 
 const SubTable = ({ getTableBodyProps, getTableProps, headerGroups, page, prepareRow}) => {
-
     return (
         <Table striped hover className='table-secondary' {...getTableProps()}>
             <thead >

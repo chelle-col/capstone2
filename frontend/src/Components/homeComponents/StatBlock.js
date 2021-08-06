@@ -2,29 +2,34 @@
 import useForceUpdate from '../../hooks/useForceUpdate';
 import { useState } from 'react';
 import { logoPrimary } from '../../styles';
-import { calcDifficulty, calcXp, getColor, getTextColor } from '../../helpers/helpers';
+import { calcDifficulty, calcXp } from '../../helpers/helpers';
 import Dropdown from '../formComponents/Dropdown';
 import PartialListItem from '../listComponents/PartialListItem';
 import NumListItem from '../listComponents/NumListItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeNumberOfPlayers } from '../../redux/actionCreaters';
 
 /** Displays the Stats of the Encounter
  * 
  *  @param encounter array of monsters
  */
 const StatBlock = ({ encounter }) => {
+    const dispatch = useDispatch();
     const monsterInfo = Object.values(encounter) || [];
+    const numberOf = useSelector( st => st.numberPlayers);
     const totalXp = monsterInfo.reduce( ( acc, curr ) => acc + calcXp( curr.numberOf, curr.cr ), 0);
     const forceUpdate = useForceUpdate();
 
-    const [ players, setPlayers ] = useState(4);
+    // Raise # players to Redux level
+    const [ players, setPlayers ] = useState(numberOf);
     const [ level, setLevel ] = useState(3);
 
     const nums = [1,2,3,4,5,6,7,8,9,10];
     const levels = [...nums, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     const difficulty = calcDifficulty(players, level, totalXp);
-    console.log(difficulty)
     
     const handleClick = (num) => {
+        dispatch(changeNumberOfPlayers(num));
         setPlayers(num);
     }
 

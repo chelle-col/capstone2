@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addEncounter, addIdToEncounter } from '../../redux/actionCreaters';
 import ModalSave from '../formComponents/ModalSave';
 import StatBlock from './StatBlock';
-
+import { useHistory } from 'react-router';
+import { RUN } from '../../routes';
 
 /** Displays and controls saving the Encounter to the api
  * 
@@ -20,6 +21,7 @@ const EncounterDisplay = ({ hasUser }) => {
     const id = useSelector ( st => st.id );
     const monsterInfo = Object.values(encounter);
     const [ savedEncounter, isSaving, setOutbound ] = useApiAuthed();
+    const history = useHistory();
 
     const [ modalShow, setModalShow ] = useState(false);
     
@@ -62,7 +64,7 @@ const EncounterDisplay = ({ hasUser }) => {
     }, [ savedEncounter ]);
 
     const handleNavRunner = () => {
-        console.log('runner')
+        history.push(RUN);
     }
 
     return (

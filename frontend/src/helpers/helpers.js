@@ -48,15 +48,15 @@ export const calcDifficulty = (num, lvl, totalXp) => {
         return {
             name: 'Insane',
             background: 'dark',
-            text: 'black'
+            text: 'white'
         };
     } else{
-    return {
-        name: 'Super Insane',
-        background: 'light',
-        num: base,
-        tp: totalXp 
-    }};
+        return {
+            name: 'Super Insane',
+            background: 'light',
+            text: 'black'
+        }
+    };
 }
 
 /** Takes cr and changes to xp

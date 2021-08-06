@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'reactstrap';
 import FormInput from './FormInput';
+import { USER } from '../../routes';
 
 /** Sign up form for users
  * 
@@ -32,7 +33,7 @@ const SignUp = ({ error, signup }) => {
         if ( errs.length === 0 ){
             const isLoggedIn = await signup( currentinfo );
             if( isLoggedIn ){
-                history.push(`/${currentinfo.username}`);
+                history.push(`${USER}/${currentinfo.username}`);
             }
         }
     }

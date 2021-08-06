@@ -47,3 +47,7 @@ export const addAllEncounters = ( encounters ) => (
 export const changeCurrEncounter = ( encounter ) => (
     {'type': actions.CHANGE_CURR_ENCOUNTER, 'payload': encounter}
 )
+
+export const changeNumberOfPlayers = ( number ) => (
+    {'type': actions.CHANGE_NUMBER_PLAYERS, 'payload': number}
+)
