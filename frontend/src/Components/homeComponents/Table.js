@@ -5,10 +5,10 @@ import ColumnFilter from '../../helpers/ColumnFilter';
 import SubTable from '../listComponents/SubTable'
 
 const ETTable = ({ data, handleClick, handleNavigation }) => {
-    
     const origionalData = useMemo(
         () => Object.values(data), [data]);
-
+        
+    // console.log(origionalData);
     const columns = useMemo(
         () => [
           { Header: 'Name',
