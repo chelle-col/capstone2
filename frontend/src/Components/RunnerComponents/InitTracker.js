@@ -11,23 +11,25 @@ const InitTracker = ({ encounter, setTurn }) => {
     };
     
     const compareCreatures = (a, b) => {
-        if(a.initiative > b.initiative){
+        if(a.initiative < b.initiative){
             return 1;
-        }else if (a.initiative < b.initiative){
+        }else if (a.initiative > b.initiative){
             return -1;
         }else{
             return 0;
         }
-    }
+    };
+
     const buildEncounterObj = encounter => {
         const encounterObject = {
             ...encounter,
             encounterArray : sortIntoArry(encounter)
         };
         return encounterObject;
-    }
+    };
    
-    const [ encounterObj, setEncounterObj ] = useState(buildEncounterObj(encounter));
+    const [ encounterObj, setEncounterObj ] = 
+        useState(buildEncounterObj(encounter));
 
     const advanceTurn = () => {
         setEncounterObj( (encounterObj) => ({
@@ -40,16 +42,7 @@ const InitTracker = ({ encounter, setTurn }) => {
     const sort = () => {
         setEncounterObj( (encounterObj) => ({
             ...encounterObj,
-            encounterArray: sortIntoArry(encounterObj)}));
-    };
-
-    const handleChangeInititive = (slug, initiaitve) => {
-        setEncounterObj( (encounterObj) => ({
-            ...encounterObj,
-            [slug]: {
-                ...encounterObj[slug],
-            initiaitve : initiaitve}
-            }));
+            encounterArray: sortIntoArry(encounter)}));
     };
 
     return (
@@ -57,8 +50,7 @@ const InitTracker = ({ encounter, setTurn }) => {
             <Button onClick={advanceTurn}>Next</Button>
             <Button onClick={sort}>Sort</Button>
             <InitTable
-                encounterArray={encounterObj.encounterArray} 
-                changeInitaitive={handleChangeInititive}
+                encounterArray={encounterObj.encounterArray}
                 obj={encounter}
             />
         </>
