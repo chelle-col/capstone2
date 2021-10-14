@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import InitTracker from "./Components/RunnerComponents/InitTracker";
+import { INITIATIVE } from './Components/RunnerComponents/names';
 
 const EncounterRunner = () => {
     const encounter = useSelector( st => st.currentEncounter );
@@ -12,7 +13,7 @@ const EncounterRunner = () => {
             players[slug] = {
                 name: `Player ${i + 1}`,
                 'slug': slug,
-                initiative: 0
+                [INITIATIVE]: 0
             }
         }
         return players;
@@ -24,16 +25,6 @@ const EncounterRunner = () => {
     const [ encounterInfo, setEncounterInfo ] = useState(INITIAL_ENCOUNTER);
     const [ currentTurn, setCurrentTurn ] = useState(encounterInfo.player0);
     console.log(currentTurn);
-    const changeInitaitive = ( name, initiative ) => {
-        setEncounterInfo( encounterInfo => ({
-            ...encounterInfo,
-            [name]: {
-                ...encounterInfo[name],
-                initiative
-            }
-        }))
-    }
-
     return (
         <>
             <div className='container-fluid'>
@@ -41,7 +32,6 @@ const EncounterRunner = () => {
                     <div className='col-4 '> 
                         <InitTracker 
                             encounter={encounterInfo} 
-                            changeInitaitive={changeInitaitive} 
                             setTurn={setCurrentTurn}/>
                     </div>
                 </div>

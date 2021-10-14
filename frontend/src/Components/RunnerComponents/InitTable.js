@@ -1,11 +1,16 @@
 import InitItem from './InitItem';
 
-const InitTable = ({ encounterArray, changeInitaitive }) => {
+const InitTable = ({ encounterArray, changeInitaitive, obj }) => {
 
     return (
         <>
             {Object.values(encounterArray).map( i => 
-                <InitItem key={i.slug} item={i} changeInitaitive={changeInitaitive}/>
+                <InitItem 
+                    key={i.slug} 
+                    item={i} 
+                    changeInitaitive={changeInitaitive}
+                    obj={obj[i.slug]}
+                    />
                 )}
         </>
     )
