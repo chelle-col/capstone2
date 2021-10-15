@@ -4,6 +4,11 @@ import InitTracker from "./Components/RunnerComponents/InitTracker";
 import { INITIATIVE } from './Components/RunnerComponents/names';
 
 const EncounterRunner = () => {
+    // TODO: 
+    // add slots for multi monsters
+    // add way to remove => trash can icon turn on removal with grayed out items
+    // add MonsterInfo for current monster
+    // add third column for adding monsters
     const encounter = useSelector( st => st.currentEncounter );
     const numberOf = useSelector( st => st.numberPlayers );
     const makePlayers = ( num ) => {

@@ -47,8 +47,8 @@ const InitTracker = ({ encounter, setTurn }) => {
 
     return (
         <>
-            <Button onClick={advanceTurn}>Next</Button>
-            <Button onClick={sort}>Sort</Button>
+            <Button className='m-2' onClick={advanceTurn}>Next</Button>
+            <Button className='m-2' onClick={sort}>Sort</Button>
             <InitTable
                 encounterArray={encounterObj.encounterArray}
                 obj={encounter}

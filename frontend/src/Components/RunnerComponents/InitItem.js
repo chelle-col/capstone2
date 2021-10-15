@@ -38,32 +38,36 @@ const InitItem = ({ item, obj }) => {
     }
 
     return (
-        <>
-            {!isInput &&
-            <div onClick={handleFocusIn}>
-                <h4>{obj.name} | {obj[INITIATIVE]}</h4>
-            </div>
-            }
-            {isInput && <Form 
-                    onSubmit={handleSubmit} 
-                    onFocus={handleFocusIn} 
-                    onBlur={handleFocusOut}>
-                <Input
-                    name="name"
-                    title="Name"
-                    type="input"
-                    onChange={handleChange}
-                    value={currentInfo.name}
-                />
-                <Input 
-                    name={INITIATIVE}
-                    title={'Initiaitve'}
-                    type={'input'}
-                    onChange={handleChange}
-                    value={currentInfo[INITIATIVE]}
-                />
-            </Form>}
-        </>
+        <div className='container-fluid p-0'>
+                {!isInput &&
+                <div onClick={handleFocusIn} className='row'>
+                    <h4 className='col'>{obj.name}</h4> <h4 className='col'>{obj[INITIATIVE]}</h4>
+                </div>
+                }
+                {isInput && 
+                <Form inline
+                    className='row'
+                        onSubmit={handleSubmit} 
+                        onFocus={handleFocusIn} 
+                        onBlur={handleFocusOut}>
+                    <Input 
+                        className='col m-2'
+                        name="name"
+                        title="Name"
+                        type="input"
+                        onChange={handleChange}
+                        value={currentInfo.name}
+                    />
+                    <Input 
+                        className='col m-2'
+                        name={INITIATIVE}
+                        title={'Initiaitve'}
+                        type={'input'}
+                        onChange={handleChange}
+                        value={currentInfo[INITIATIVE]}
+                    />
+                </Form>}
+        </div>
     )
 }
 
