@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import CurrentTurn from './Components/RunnerComponents/CurrentTurn';
 import InitTracker from "./Components/RunnerComponents/InitTracker";
 import { INITIATIVE } from './Components/RunnerComponents/names';
 
@@ -28,6 +29,9 @@ const EncounterRunner = () => {
         ...encounter
     };
     const [ encounterInfo, setEncounterInfo ] = useState(INITIAL_ENCOUNTER);
+    // ********** IMPORTANT *************************
+    // setting the encounter info directly rather than using setEncounterInfo
+    // will change before publishing
     const [ currentTurn, setCurrentTurn ] = useState(encounterInfo.player0);
     console.log(currentTurn);
     return (
@@ -38,6 +42,11 @@ const EncounterRunner = () => {
                         <InitTracker 
                             encounter={encounterInfo} 
                             setTurn={setCurrentTurn}/>
+                    </div>
+                    <div className='col-4'>
+                        <CurrentTurn
+                            turn={currentTurn}
+                        />
                     </div>
                 </div>
             </div>

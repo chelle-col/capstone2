@@ -16,8 +16,9 @@ import Loading from './Loading';
 /** Displays the info from api about monster
  * 
  */
-const MonsterDetail = () => {
-    const { monster } = useParams();
+const MonsterDetail = ({ monsterName }) => {
+    const { monster : paramMonster } = useParams();
+    const monster = monsterName ? monsterName : paramMonster;
     const [ isLoading, monsterInfo ] = useMonsterApi(monster);
 
     if(isLoading){
