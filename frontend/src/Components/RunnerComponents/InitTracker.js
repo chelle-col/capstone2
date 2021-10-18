@@ -1,8 +1,8 @@
 import InitTable from "./InitTable";
 import { Button } from 'reactstrap';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const InitTracker = ({ encounter, setTurn }) => {
+const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }) => {
     const sortIntoArry = obj => {
        return Object.values(obj).map(
             m => ({name: m.name, slug:m.slug, initiative: m.initiative || 0}
@@ -42,16 +42,24 @@ const InitTracker = ({ encounter, setTurn }) => {
     const sort = () => {
         setEncounterObj( (encounterObj) => ({
             ...encounterObj,
-            encounterArray: sortIntoArry(encounter)}));
+            encounterArray: sortIntoArry(encounter)})
+            );
     };
-
+    // When encounterObj changes we can change the turn
+    useEffect(()=>{
+        setTurn(encounterObj.encounterArray[0]);
+    },[encounterObj]);
+    // TODO add delete action to table and button
     return (
         <>
             <Button className='m-2' onClick={advanceTurn}>Next</Button>
             <Button className='m-2' onClick={sort}>Sort</Button>
+            <Button color='danger' className='m-2' onClick={()=>console.log('Clicked')}><i className="fas fa-trash-alt"></i></Button>
             <InitTable
                 encounterArray={encounterObj.encounterArray}
                 obj={encounter}
+                setMonsterInitiative={setMonsterInitiative}
+                deleteMonster={deleteMonster}
             />
         </>
     )

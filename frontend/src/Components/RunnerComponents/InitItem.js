@@ -2,7 +2,7 @@ import { Form, Input } from 'reactstrap';
 import { useState } from 'react';
 import { INITIATIVE } from './names';
 
-const InitItem = ({ item, obj }) => {
+const InitItem = ({ setMonsterInitiative, item, obj }) => {
     const [ isInput, setIsInput ] = useState(false);
     const [ currentInfo, setCurrentInfo ] = useState({
         'name': item.name,
@@ -19,11 +19,8 @@ const InitItem = ({ item, obj }) => {
 
     const handleChange = e => {
         e.preventDefault();
-        if(e.target.name == INITIATIVE){
-            obj[INITIATIVE] = parseInt(e.target.value);
-        }else{
-            obj[e.target.name] = e.target.value;
-        }
+        const value = e.target.name === INITIATIVE ? parseInt(e.target.value) : e.target.value;
+        setMonsterInitiative(obj.slug, e.target.name, value);
         setCurrentInfo((currentInfo) => (
             {
             ...currentInfo,
@@ -62,7 +59,7 @@ const InitItem = ({ item, obj }) => {
                         className='col m-2'
                         name={INITIATIVE}
                         title={'Initiaitve'}
-                        type={'input'}
+                        type={'number'}
                         onChange={handleChange}
                         value={currentInfo[INITIATIVE]}
                     />

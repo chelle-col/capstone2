@@ -10,6 +10,7 @@ const { ENCOUNTER_TABLE, MONST_ENCOUNT_TABLE, MONSTER_TABLE } = require('./table
 class Encounters {
 
     // gets all user encounters
+    // TODO sort by encounter playlist
     static async getAll( username ){
         const result = await db.query(
             `SELECT id,

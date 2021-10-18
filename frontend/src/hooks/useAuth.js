@@ -32,8 +32,8 @@ const useAuthApi = () => {
         }
         
         // get user from api 
-        const fullUser = await BackendApi.get( user.username, token.token );
-        dispatch(addUser({ ...fullUser.user, token }));
+        const data = await BackendApi.get( user.username, token.token );
+        dispatch(addUser({ ...data.user, token }));
         return true;
     };
 
