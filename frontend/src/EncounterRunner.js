@@ -9,6 +9,7 @@ const EncounterRunner = () => {
     // add way to remove => trash can icon turn on removal with grayed out items
     // add third column for adding monsters
     // TODO add delete action to table and button inside InitTracker
+    // TODO after putting monsters in state need to add dex bounus to roll in InitItem
     const encounter = useSelector( st => st.currentEncounter );
     const numberOf = useSelector( st => st.numberPlayers );
     const makePlayers = ( num ) => {

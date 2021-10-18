@@ -1,4 +1,4 @@
-import { Form, Input } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 import { useState } from 'react';
 import { INITIATIVE } from './names';
 
@@ -25,6 +25,19 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
             {
             ...currentInfo,
             [e.target.name]: e.target.value 
+        }
+        ));
+    }
+
+    const handleRandomInitiative = () => {
+        // TODO after putting monsters in state
+        // need to add dex bounus to roll
+        const rand = Math.floor(Math.random() * 20);
+        setMonsterInitiative(obj.slug, INITIATIVE, rand);
+        setCurrentInfo((currentInfo) => (
+            {
+            ...currentInfo,
+            [INITIATIVE]: rand
         }
         ));
     }
@@ -63,6 +76,9 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
                         onChange={handleChange}
                         value={currentInfo[INITIATIVE]}
                     />
+                    <Button onClick={handleRandomInitiative}>
+                        <i className="fas fa-dice-d20"></i>
+                    </Button>
                 </Form>}
         </div>
     )

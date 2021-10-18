@@ -7,7 +7,7 @@ const CurrentTurn = ({ turn }) => {
         <>
             <h1>CurrentTurn</h1>
             {isPlayer && <h2>{turn.name}</h2>}
-            {!isPlayer && <MonsterDetail monsterName={turn.slug.spliy('_')[0]}/>}
+            {!isPlayer && <MonsterDetail monsterName={turn.slug.split('_')[0]}/>}
         </>
     )
 }
