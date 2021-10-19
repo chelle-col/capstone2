@@ -3,8 +3,8 @@ import { Button } from 'reactstrap';
 import { useEffect, useState } from "react";
 
 const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }) => {
-    const [ isDeleting, setIsDeleting ] = useState(false);
 
+    const [ isDeleting, setIsDeleting ] = useState(false);
     const sortIntoArry = obj => {
        return Object.values(obj).map(
             m => ({name: m.name, slug:m.slug, initiative: m.initiative || 0}
@@ -25,13 +25,20 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
     const buildEncounterObj = encounter => {
         const encounterObject = {
             ...encounter,
-            encounterArray : sortIntoArry(encounter)
+            encounterArray : Object.values(encounter).map(
+                m => ({name: m.name, slug:m.slug, initiative: m.initiative || 0}
+                    )
+                )
         };
         return encounterObject;
     };
    
     const [ encounterObj, setEncounterObj ] = 
         useState(buildEncounterObj(encounter));
+    
+    useEffect(() => {
+        setEncounterObj(buildEncounterObj(encounter));
+    }, [encounter]);
 
     const advanceTurn = () => {
         setEncounterObj( (encounterObj) => ({

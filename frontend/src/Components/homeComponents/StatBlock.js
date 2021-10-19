@@ -1,5 +1,4 @@
 
-import useForceUpdate from '../../hooks/useForceUpdate';
 import { useState } from 'react';
 import { logoPrimary } from '../../styles';
 import { calcDifficulty, calcXp } from '../../helpers/helpers';
@@ -18,7 +17,6 @@ const StatBlock = ({ encounter }) => {
     const monsterInfo = Object.values(encounter) || [];
     const numberOf = useSelector( st => st.numberPlayers);
     const totalXp = monsterInfo.reduce( ( acc, curr ) => acc + calcXp( curr.numberOf, curr.cr ), 0);
-    const forceUpdate = useForceUpdate();
 
     // Raise # players to Redux level
     const [ players, setPlayers ] = useState(numberOf);
@@ -57,7 +55,7 @@ const StatBlock = ({ encounter }) => {
                 <PartialListItem items={[ ' ', 'Name', "CR"]}/>
                 </div>
                 <div className='row'>
-                {monsterInfo && monsterInfo.map( m => <NumListItem key={m.slug} item={m} forceUpdate={forceUpdate}/>)}
+                {monsterInfo && monsterInfo.map( m => <NumListItem key={m.slug} item={m}/>)}
                 <div className='col'>
                     <PartialListItem items={['Total Experience: ', totalXp]}/>
                 </div>

@@ -11,7 +11,12 @@ const FormDropdown = ({ header, actions, handleClick, size='lg' }) => {
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
     return (
-        <Dropdown isOpen={dropdownOpen} toggle={toggle} size={size}>
+        <Dropdown 
+            isOpen={dropdownOpen} 
+            toggle={toggle} 
+            size={size}
+            direction='down'
+        >
             <DropdownToggle style={{background: logoSecondary}} caret>
                 {header}
             </DropdownToggle>

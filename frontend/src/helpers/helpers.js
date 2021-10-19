@@ -20,42 +20,42 @@ export const calcXp = (num, cr) => {
  */
 export const calcDifficulty = (num, lvl, totalXp) => {
     const base = num * levelToDifficulty(lvl);
-    if( base > totalXp ){
-        return {
-            name: 'Easy',
-            background: 'success',
-            text: 'black'
-        };
-    } else if ( base * 2 > totalXp ){
-        return {
-            name: 'Medium',
-            background: 'info',
-            text: 'black'
-        };
-    } else if ( base * 3 > totalXp ){
-        return {
-            name: 'Hard',
-            background: 'warning',
-            text: 'black'
-        };
-    } else if ( base * 4 > totalXp ){
-        return {
-            name: 'Deadly',
-            background: 'danger',
-            text: 'black'
-        };
-    } else if ( base * 5 > totalXp ){
+    if ( base * 5 < totalXp ){
         return {
             name: 'Insane',
             background: 'dark',
             text: 'white'
         };
-    } else{
+    } else if ( base * 4 < totalXp ){
+        return {
+            name: 'Deadly',
+            background: 'danger',
+            text: 'black'
+        };
+    } else if ( base * 3 < totalXp ){
+        return {
+            name: 'Hard',
+            background: 'warning',
+            text: 'black'
+        };
+    } else if ( base * 2 < totalXp ){
+        return {
+            name: 'Medium',
+            background: 'info',
+            text: 'black'
+        };
+    }else if( base < totalXp ){
+        return {
+            name: 'Easy',
+            background: 'success',
+            text: 'black'
+        };
+    } else {
         return {
             name: 'Super Insane',
-            background: 'light',
+            background: 'white',
             text: 'black'
-        }
+        };
     };
 }
 

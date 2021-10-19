@@ -8,13 +8,12 @@ const Container = styled.div`
 `;
 const InitTable = ({ deleteMonster, isDeleting, setMonsterInitiative, encounterArray, obj }) => {
     
-
     return (
         <>
             {Object.values(encounterArray).map( i => 
                 <Container className='m-1 p-1'>
                     {isDeleting && <DeleteItem 
-                        key={i.slug + "_del"}
+                        key={`${i.slug}_del`}
                         deleteMonster={deleteMonster} 
                         isDeleting={isDeleting} 
                         slug={i.slug}

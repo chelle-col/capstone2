@@ -3,13 +3,13 @@ import { PLAYER } from './names';
 
 const CurrentTurn = ({ turn }) => {
     if(!turn){
-        return <h1>Empty Initiaitve</h1>
+        return <h2>Empty Initiaitve</h2>
     }
     const isPlayer = turn.slug.includes(PLAYER);
     return (
         <>
-            <h1>CurrentTurn</h1>
-            {isPlayer && <h2>{turn.name}</h2>}
+            <h2>CurrentTurn</h2>
+            {isPlayer && <h3>{turn.name}</h3>}
             {!isPlayer && <MonsterDetail monsterName={turn.slug.split('_')[0]}/>}
         </>
     )

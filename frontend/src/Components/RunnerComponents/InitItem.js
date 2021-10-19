@@ -9,7 +9,6 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
         'initiaitve': item.initiaitve || 0
         }
     );
-    
     const handleFocusIn = () => {
         setIsInput(true);
     }
@@ -40,6 +39,7 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
             [INITIATIVE]: rand
         }
         ));
+        handleFocusOut();
     }
 
     const handleSubmit = e => {

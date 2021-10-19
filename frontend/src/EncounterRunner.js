@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import CurrentTurn from './Components/RunnerComponents/CurrentTurn';
 import InitTracker from "./Components/RunnerComponents/InitTracker";
 import { INITIATIVE } from './Components/RunnerComponents/names';
+import AddTo from './Components/RunnerComponents/AddTo';
+import { useDispatch } from 'react-redux';
+import { changeNumOf } from './redux/actionCreaters';
 
 const EncounterRunner = () => {
     // TODO: 
-    // add way to remove => trash can icon turn on removal with grayed out items
     // add third column for adding monsters
-    // TODO add delete action to table and button inside InitTracker
     // TODO after putting monsters in state need to add dex bounus to roll in InitItem
+    // move makePlayers and makeMonsters into own file
+    // dropdown on home page goes underneath site logo
+    // option to use one initiative for all monsters
     const encounter = useSelector( st => st.currentEncounter );
     const numberOf = useSelector( st => st.numberPlayers );
     const makePlayers = ( num ) => {
@@ -24,6 +28,8 @@ const EncounterRunner = () => {
         }
         return players;
     };
+
+    const dispatch = useDispatch();
 
     const makeMonsters = (monsterArray) =>{
         let monsters = {};
@@ -50,6 +56,7 @@ const EncounterRunner = () => {
     };
 
     const [ encounterInfo, setEncounterInfo ] = useState(INITIAL_ENCOUNTER);
+
     const deleteMonster = (slug) => {
         const copyEncounterInfo = encounterInfo;
         delete copyEncounterInfo[slug];
@@ -68,11 +75,29 @@ const EncounterRunner = () => {
 
     const [ currentTurn, setCurrentTurn ] = useState(encounterInfo.player_0);
     
+    const addToEncounter = (slug) => {
+        const bareSlug = slug.split("_")[0];
+        const item = encounter[bareSlug];
+        const newSlug = bareSlug + '_' + (item.numberOf + 1);
+        // add one to the encounter in redux
+        dispatch(changeNumOf(item, item.numberOf + 1));
+        // add to the encounterInfo
+        const copyEncounterInfo = {
+            ...encounterInfo,
+            [newSlug]:{
+                ...item,
+                slug: newSlug,
+                 [INITIATIVE]: 0
+            }
+        }
+        setEncounterInfo({...copyEncounterInfo});
+    }
+
     return (
         <>
             <div className='container-fluid'>
                 <div className='row'> 
-                    <div className='col-4 '> 
+                    <div className='col'> 
                         <InitTracker 
                             setMonsterInitiative={setMonsterProperties}
                             deleteMonster={deleteMonster}
@@ -80,9 +105,15 @@ const EncounterRunner = () => {
                             setTurn={setCurrentTurn}
                             />
                     </div>
-                    <div className='col-4'>
+                    <div className='col'>
                         <CurrentTurn
                             turn={currentTurn}
+                        />
+                    </div>
+                    <div className='col'>
+                        <AddTo 
+                            encounter={Object.values(encounter)}
+                            addToEncounter={addToEncounter}
                         />
                     </div>
                 </div>

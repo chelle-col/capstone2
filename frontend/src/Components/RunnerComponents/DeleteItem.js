@@ -4,6 +4,8 @@ import styled from 'styled-components';
 const GreyedOut = styled.div`
         position: absolute;
         background: gray;
+        top: 0;
+        left: 0;
         height: 100%;
         width: 100%;
         opacity: 0.5;
@@ -11,10 +13,9 @@ const GreyedOut = styled.div`
     const PostionWrapper = styled.div`
         position: absolute;
         right: 2%;
-        bottom: 3%;
     `;
 
-const DeleteItem = ({ isDeleting, deleteMonster, slug }) => {
+const DeleteItem = ({ deleteMonster, slug }) => {
 
     const handleClick = () => {
         deleteMonster(slug);
@@ -24,7 +25,7 @@ const DeleteItem = ({ isDeleting, deleteMonster, slug }) => {
             <GreyedOut className='border border-radius'>
             </GreyedOut>
             <PostionWrapper>
-                <Button color='danger' onClick={handleClick}>
+                <Button color='danger m-1' onClick={handleClick}>
                     <i className="fas fa-skull-crossbones"></i>
                 </Button>
             </PostionWrapper>
