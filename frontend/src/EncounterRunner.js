@@ -50,12 +50,12 @@ const EncounterRunner = () => {
     };
 
     const [ encounterInfo, setEncounterInfo ] = useState(INITIAL_ENCOUNTER);
-
     const deleteMonster = (slug) => {
         const copyEncounterInfo = encounterInfo;
         delete copyEncounterInfo[slug];
-        setEncounterInfo(...copyEncounterInfo);
-    }
+        setEncounterInfo(()=>({...copyEncounterInfo}));
+    };
+
     const setMonsterProperties = (slug, prop, value) => {
         setEncounterInfo(encounterInfo=>({
             ...encounterInfo,
@@ -64,7 +64,7 @@ const EncounterRunner = () => {
                 [prop]: value
             }
         }))
-    }
+    };
 
     const [ currentTurn, setCurrentTurn ] = useState(encounterInfo.player_0);
     
@@ -77,7 +77,8 @@ const EncounterRunner = () => {
                             setMonsterInitiative={setMonsterProperties}
                             deleteMonster={deleteMonster}
                             encounter={encounterInfo} 
-                            setTurn={setCurrentTurn}/>
+                            setTurn={setCurrentTurn}
+                            />
                     </div>
                     <div className='col-4'>
                         <CurrentTurn

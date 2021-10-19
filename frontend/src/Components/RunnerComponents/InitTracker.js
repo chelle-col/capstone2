@@ -3,6 +3,8 @@ import { Button } from 'reactstrap';
 import { useEffect, useState } from "react";
 
 const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }) => {
+    const [ isDeleting, setIsDeleting ] = useState(false);
+
     const sortIntoArry = obj => {
        return Object.values(obj).map(
             m => ({name: m.name, slug:m.slug, initiative: m.initiative || 0}
@@ -39,27 +41,42 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
         setTurn(encounterObj.encounterArray[1]);
     };
 
+    const handleDelete = () => {
+        setIsDeleting(isDeleting => !isDeleting);
+    }
+
     const sort = () => {
         setEncounterObj( (encounterObj) => ({
             ...encounterObj,
             encounterArray: sortIntoArry(encounter)})
             );
     };
+
     // When encounterObj changes we can change the turn
     useEffect(()=>{
         setTurn(encounterObj.encounterArray[0]);
     },[encounterObj]);
-    // TODO add delete action to table and button
+
+    const removeTurn = (slug) => {
+        let copyEncounterObj = {
+            ...encounterObj,
+            encounterArray: encounterObj.encounterArray.filter(i=> i.slug != slug)
+        };
+        setEncounterObj( () => ({...copyEncounterObj}));
+        deleteMonster(slug);
+    };
+
     return (
         <>
             <Button className='m-2' onClick={advanceTurn}>Next</Button>
             <Button className='m-2' onClick={sort}>Sort</Button>
-            <Button color='danger' className='m-2' onClick={()=>console.log('Clicked')}><i className="fas fa-trash-alt"></i></Button>
+            <Button color='danger' className='m-2' onClick={handleDelete}><i className="fas fa-skull-crossbones"></i></Button>
             <InitTable
                 encounterArray={encounterObj.encounterArray}
                 obj={encounter}
                 setMonsterInitiative={setMonsterInitiative}
-                deleteMonster={deleteMonster}
+                deleteMonster={removeTurn}
+                isDeleting={isDeleting}
             />
         </>
     )

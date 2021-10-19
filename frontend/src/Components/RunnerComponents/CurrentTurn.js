@@ -2,6 +2,9 @@ import MonsterDetail from '../../MonsterDetail';
 import { PLAYER } from './names';
 
 const CurrentTurn = ({ turn }) => {
+    if(!turn){
+        return <h1>Empty Initiaitve</h1>
+    }
     const isPlayer = turn.slug.includes(PLAYER);
     return (
         <>

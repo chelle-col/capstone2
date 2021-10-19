@@ -50,8 +50,10 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
     return (
         <div className='container-fluid p-0'>
                 {!isInput &&
-                <div onClick={handleFocusIn} className='row'>
-                    <h4 className='col'>{obj.name}</h4> <h4 className='col'>{obj[INITIATIVE]}</h4>
+                <div 
+                    onClick={handleFocusIn} 
+                    className='row'>
+                        <h4 className='col text-right'>{obj?.name}</h4> <h4 className='col'>{obj?.[INITIATIVE]}</h4>
                 </div>
                 }
                 {isInput && 
