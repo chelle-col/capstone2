@@ -22,7 +22,7 @@ const DeleteItem = ({ deleteMonster, slug }) => {
     }
     return (
         <>
-            <GreyedOut className='border border-radius'>
+            <GreyedOut className='border rounded'>
             </GreyedOut>
             <PostionWrapper>
                 <Button color='danger m-1' onClick={handleClick}>

@@ -18,6 +18,17 @@ const rootReducer = (state=INIT_STATE, action) => {
                 ...state,
                 'monsters': {...action.monsters}
             };
+        // Expands the monster to include extra info
+        case actions.EXPAND_MONSTER:
+            return{
+                ...state,
+                monsters: {
+                    ... state.monsters,
+                    [action.monster.slug]: {
+                        ...action.monster
+                    }
+                }
+            };
         // Adds enounter to state
         case actions.ADD_ENCOUNTER:
             return {

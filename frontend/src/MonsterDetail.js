@@ -31,7 +31,6 @@ const MonsterDetail = ({ monsterName }) => {
                         'wisdom': monsterInfo.wisdom,
                         'charisma': monsterInfo.charisma}
 
-    // console.log(monsterInfo);
 
     return (
         <div className='container'>

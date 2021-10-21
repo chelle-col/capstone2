@@ -5,11 +5,9 @@ import { useEffect, useState } from "react";
 const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }) => {
 
     const [ isDeleting, setIsDeleting ] = useState(false);
+
     const sortIntoArry = obj => {
-       return Object.values(obj).map(
-            m => ({name: m.name, slug:m.slug, initiative: m.initiative || 0}
-                )
-            ).sort(compareCreatures)
+       return Object.values(obj).sort(compareCreatures)
     };
     
     const compareCreatures = (a, b) => {
@@ -25,10 +23,7 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
     const buildEncounterObj = encounter => {
         const encounterObject = {
             ...encounter,
-            encounterArray : Object.values(encounter).map(
-                m => ({name: m.name, slug:m.slug, initiative: m.initiative || 0}
-                    )
-                )
+            encounterArray : Object.values(encounter)
         };
         return encounterObject;
     };
@@ -37,7 +32,17 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
         useState(buildEncounterObj(encounter));
     
     useEffect(() => {
-        setEncounterObj(buildEncounterObj(encounter));
+        const encounterAsArray = Object.values(encounter);
+        encounterAsArray.forEach( entry => {
+            if(!encounterObj[entry.slug]){
+                encounterObj.encounterArray.push(entry);
+                setEncounterObj( encounterObj => ({
+                    ...encounterObj,
+                    [entry.slug] : entry,
+                    encounterArray: encounterObj.encounterArray
+                }))
+            }
+        })
     }, [encounter]);
 
     const advanceTurn = () => {

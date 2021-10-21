@@ -11,7 +11,7 @@ const InitTable = ({ deleteMonster, isDeleting, setMonsterInitiative, encounterA
     return (
         <>
             {Object.values(encounterArray).map( i => 
-                <Container className='m-1 p-1'>
+                <Container key={`${i.slug}_con`} className='m-1 p-1'>
                     {isDeleting && <DeleteItem 
                         key={`${i.slug}_del`}
                         deleteMonster={deleteMonster} 

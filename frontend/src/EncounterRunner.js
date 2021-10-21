@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CurrentTurn from './Components/RunnerComponents/CurrentTurn';
 import InitTracker from "./Components/RunnerComponents/InitTracker";
@@ -6,15 +6,17 @@ import { INITIATIVE } from './Components/RunnerComponents/names';
 import AddTo from './Components/RunnerComponents/AddTo';
 import { useDispatch } from 'react-redux';
 import { changeNumOf } from './redux/actionCreaters';
+import { getModifier } from "./Components/monster/modifier";
 
 const EncounterRunner = () => {
     // TODO: 
-    // add third column for adding monsters
     // TODO after putting monsters in state need to add dex bounus to roll in InitItem
     // move makePlayers and makeMonsters into own file
     // dropdown on home page goes underneath site logo
     // option to use one initiative for all monsters
+    // hit point tracking
     const encounter = useSelector( st => st.currentEncounter );
+    const stateMonsters = useSelector( st => st.monsters );
     const numberOf = useSelector( st => st.numberPlayers );
     const makePlayers = ( num ) => {
         let players = {};

@@ -1,8 +1,10 @@
 import { Button, Form, Input } from 'reactstrap';
 import { useState } from 'react';
 import { INITIATIVE } from './names';
+import useMonsterApi from '../../api/useMonsterApi';
 
 const InitItem = ({ setMonsterInitiative, item, obj }) => {
+    const [ isLoading, monsterInfo ] = useMonsterApi( item.slug.split('_')[0] );
     const [ isInput, setIsInput ] = useState(false);
     const [ currentInfo, setCurrentInfo ] = useState({
         'name': item.name,
@@ -29,8 +31,7 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
     }
 
     const handleRandomInitiative = () => {
-        // TODO after putting monsters in state
-        // need to add dex bounus to roll
+        console.log(monsterInfo);
         const rand = Math.floor(Math.random() * 20);
         setMonsterInitiative(obj.slug, INITIATIVE, rand);
         setCurrentInfo((currentInfo) => (

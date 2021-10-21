@@ -8,6 +8,10 @@ export const addAllMonsters = ( monsters ) => (
     { 'type': actions.ADD_ALL_MONSTERS, monsters }
 )
 
+export const expandMonster = ( monster ) => (
+    { 'type': actions.EXPAND_MONSTER, monster : { ...monster, isFullMonster : 'true' }}
+)
+
 export const addUser = ( user ) => (
     { 'type': actions.ADD_USER, user }
 )
