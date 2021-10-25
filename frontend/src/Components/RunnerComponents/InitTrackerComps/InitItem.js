@@ -1,8 +1,8 @@
 import { Button, Form, Input } from 'reactstrap';
 import { useState } from 'react';
-import { INITIATIVE } from './names';
-import useMonsterApi from '../../api/useMonsterApi';
-import { getModifier } from '../monster/modifier';
+import { INITIATIVE } from '../names';
+import useMonsterApi from '../../../api/useMonsterApi';
+import { getModifier } from '../../monster/modifier';
 
 const InitItem = ({ setMonsterInitiative, item, obj }) => {
     const [ isLoading, monsterInfo ] = useMonsterApi( item.slug.split('_')[0] );

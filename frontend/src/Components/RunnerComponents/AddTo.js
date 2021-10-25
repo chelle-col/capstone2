@@ -1,4 +1,4 @@
-import AddToItem from "./AddToItem";
+import AddToItem from "./AddToComps/AddToItem";
 import Header from './Header';
 
 const AddTo = ({ encounter, addToEncounter }) => {

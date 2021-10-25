@@ -1,4 +1,4 @@
-import InitTable from "./InitTable";
+import InitTable from "./InitTrackerComps/InitTable";
 import { Button } from 'reactstrap';
 import { useEffect, useState } from "react";
 import Header from './Header';
