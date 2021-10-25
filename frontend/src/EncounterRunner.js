@@ -6,7 +6,6 @@ import { INITIATIVE } from './Components/RunnerComponents/names';
 import AddTo from './Components/RunnerComponents/AddTo';
 import { useDispatch } from 'react-redux';
 import { changeNumOf } from './redux/actionCreaters';
-import { getModifier } from "./Components/monster/modifier";
 
 const EncounterRunner = () => {
     // TODO: 
@@ -16,7 +15,6 @@ const EncounterRunner = () => {
     // option to use one initiative for all monsters
     // hit point tracking
     const encounter = useSelector( st => st.currentEncounter );
-    const stateMonsters = useSelector( st => st.monsters );
     const numberOf = useSelector( st => st.numberPlayers );
     const makePlayers = ( num ) => {
         let players = {};
@@ -99,7 +97,7 @@ const EncounterRunner = () => {
         <>
             <div className='container-fluid'>
                 <div className='row'> 
-                    <div className='col'> 
+                    <div className='col-12 col-sm-12 col-md-5 col-lg col-xl'> 
                         <InitTracker 
                             setMonsterInitiative={setMonsterProperties}
                             deleteMonster={deleteMonster}
@@ -107,12 +105,12 @@ const EncounterRunner = () => {
                             setTurn={setCurrentTurn}
                             />
                     </div>
-                    <div className='col'>
+                    <div className='col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5'>
                         <CurrentTurn
                             turn={currentTurn}
                         />
                     </div>
-                    <div className='col'>
+                    <div className='col-12 col-sm-12 col-md col-lg col-xl'>
                         <AddTo 
                             encounter={Object.values(encounter)}
                             addToEncounter={addToEncounter}

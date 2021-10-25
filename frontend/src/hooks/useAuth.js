@@ -17,7 +17,7 @@ const useAuthApi = () => {
             let result = await BackendApi.login( user, path );
             return result;
         }catch (e) {
-            const err = (typeof e.response.data.error.message) === 'array' ? e.response.data.error.message[0] : e.response.data.error.message;
+            const err = (typeof e.response.data.error.message) === typeof [] ? e.response.data.error.message[0] : e.response.data.error.message;
             setErrors(err);
             return UNAUTHORIZED;
         }

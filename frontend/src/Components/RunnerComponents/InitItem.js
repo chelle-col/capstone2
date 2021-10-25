@@ -2,6 +2,7 @@ import { Button, Form, Input } from 'reactstrap';
 import { useState } from 'react';
 import { INITIATIVE } from './names';
 import useMonsterApi from '../../api/useMonsterApi';
+import { getModifier } from '../monster/modifier';
 
 const InitItem = ({ setMonsterInitiative, item, obj }) => {
     const [ isLoading, monsterInfo ] = useMonsterApi( item.slug.split('_')[0] );
@@ -31,8 +32,10 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
     }
 
     const handleRandomInitiative = () => {
-        console.log(monsterInfo);
-        const rand = Math.floor(Math.random() * 20);
+        // hang if the information isn't loaded yet
+        while(isLoading){}
+        const modifier = monsterInfo ? getModifier(monsterInfo.dexterity) : 0;
+        const rand = Math.floor(Math.random() * 20) + modifier;
         setMonsterInitiative(obj.slug, INITIATIVE, rand);
         setCurrentInfo((currentInfo) => (
             {

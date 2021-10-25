@@ -1,6 +1,7 @@
 import InitTable from "./InitTable";
 import { Button } from 'reactstrap';
 import { useEffect, useState } from "react";
+import Header from './Header';
 
 const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }) => {
 
@@ -80,6 +81,7 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
 
     return (
         <>
+            <Header title='Initiaitve Tracker'/>
             <Button className='m-2' onClick={advanceTurn}>Next</Button>
             <Button className='m-2' onClick={sort}>Sort</Button>
             <Button color='danger' className='m-2' onClick={handleDelete}><i className="fas fa-skull-crossbones"></i></Button>

@@ -20,21 +20,21 @@ const useMonsterApi = (slug) => {
             setData(null);
             setIsLoading(false);
         }else if(stateMonster.isFullMonster){
-            setData(stateMonster ? stateMonster : null );
+            setData(stateMonster);
             setIsLoading(false);
         }else{
-            async function getData() {
-                let resp = await BackendApi.getMonster(slug);
-                setData(resp);
-                setIsLoading(false);
-            }
-            getData();
-            }
-        }, [ slug ])
+        async function getData() {
+            let resp = await BackendApi.getMonster(slug);
+            setData(resp);
+            setIsLoading(false);
+        }
+        getData();
+        }
+    }, [ slug ])
         
         useEffect(()=> {
-            dispatch(expandMonster( data ));
-        }, [data]);
+            dispatch( expandMonster( data ));
+        }, [ data, dispatch ]);
 
         return [ isLoading, data ];
     }

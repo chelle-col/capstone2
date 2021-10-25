@@ -1,10 +1,11 @@
 import AddToItem from "./AddToItem";
+import Header from './Header';
 
 const AddTo = ({ encounter, addToEncounter }) => {
     
     return (
         <>
-            <h2>Add To</h2>
+            <Header title='Add On'/>
             {encounter.map( (i, idx) => 
                 <AddToItem 
                     key={idx} 

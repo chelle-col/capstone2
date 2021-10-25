@@ -23,7 +23,7 @@ const rootReducer = (state=INIT_STATE, action) => {
             return{
                 ...state,
                 monsters: {
-                    ... state.monsters,
+                    ...state.monsters,
                     [action.monster.slug]: {
                         ...action.monster
                     }
