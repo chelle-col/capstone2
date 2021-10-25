@@ -3,7 +3,7 @@ import { PLAYER } from './names';
 import Header from './Header';
 import EditableStatBlock from './CurrentTurnComps/EditableStatBlock';
 
-const CurrentTurn = ({ turn }) => {
+const CurrentTurn = ({ turn, encounter, setProperties }) => {
     // Add Hit Point and AC tracker to top
     const bareSlug = turn.slug.split('_')[0];
     if(!turn){
@@ -13,7 +13,11 @@ const CurrentTurn = ({ turn }) => {
     return (
         <>
             <Header title='Current Turn'/>
-            <EditableStatBlock name={bareSlug} />
+            <EditableStatBlock 
+                slug={turn.slug} 
+                encounter={encounter}
+                setProperties={setProperties}
+            />
             {isPlayer && <h3>{turn.name}</h3>}
             {!isPlayer && <MonsterDetail monsterName={bareSlug}/>}
         </>

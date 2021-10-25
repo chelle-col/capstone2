@@ -6,53 +6,22 @@ import { INITIATIVE } from './Components/RunnerComponents/names';
 import AddTo from './Components/RunnerComponents/AddTo';
 import { useDispatch } from 'react-redux';
 import { changeNumOf } from './redux/actionCreaters';
+import { makePlayersFromNum, makeMonstersFromArray } from './Components/RunnerComponents/helperFuctions';
 
 const EncounterRunner = () => {
     // TODO: 
-    // TODO after putting monsters in state need to add dex bounus to roll in InitItem
-    // move makePlayers and makeMonsters into own file
     // dropdown on home page goes underneath site logo
     // option to use one initiative for all monsters
     // hit point tracking
+    // Colapseable Sections in Monster Detail
     const encounter = useSelector( st => st.currentEncounter );
     const numberOf = useSelector( st => st.numberPlayers );
-    const makePlayers = ( num ) => {
-        let players = {};
-        for( let i = 0; i < num; i++){
-            const slug = `player_${i}`;
-            players[slug] = {
-                name: `Player ${i + 1}`,
-                'slug': slug,
-                [INITIATIVE]: 0
-            }
-        }
-        return players;
-    };
 
     const dispatch = useDispatch();
 
-    const makeMonsters = (monsterArray) =>{
-        let monsters = {};
-        // Loop over array
-        for( const m in monsterArray){
-           // Add each monster to the object
-           // For any that have more than one
-           // Add each with their own slug
-            for(let idx = 0; idx < monsterArray[m].numberOf; idx++){
-                let newSlug = monsterArray[m].slug + "_" + idx;
-                monsters[newSlug] = {
-                    ...monsterArray[m],
-                    slug : newSlug,
-                    [INITIATIVE] : 0
-                }
-            }
-        }
-        return monsters;
-    };
-
     const INITIAL_ENCOUNTER = {
-        ...makePlayers(numberOf),
-        ...makeMonsters(Object.values(encounter))
+        ...makePlayersFromNum(numberOf),
+        ...makeMonstersFromArray(Object.values(encounter))
     };
 
     const [ encounterInfo, setEncounterInfo ] = useState(INITIAL_ENCOUNTER);
@@ -108,6 +77,8 @@ const EncounterRunner = () => {
                     <div className='col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5'>
                         <CurrentTurn
                             turn={currentTurn}
+                            encounter={encounterInfo}
+                            setProperties={setMonsterProperties}
                         />
                     </div>
                     <div className='col-12 col-sm-12 col-md col-lg col-xl'>
