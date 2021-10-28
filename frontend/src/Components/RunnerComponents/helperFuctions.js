@@ -1,7 +1,7 @@
 import { INITIATIVE, HIT_POINTS } from './names';
 
 export const rollDiceFromString = ( str ) => {
-    if( !str ){
+    if( !str || str === -1 ){
         return 0;
     }
     const [ numberOfDice, rest ] = str.split('d');

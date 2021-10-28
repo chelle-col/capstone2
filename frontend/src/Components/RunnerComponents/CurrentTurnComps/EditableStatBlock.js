@@ -5,6 +5,8 @@ import ShowStat from "./ShowStat";
 import { rollDiceFromString } from "../helperFuctions";
 import { useEffect } from "react";
 import { HIT_POINTS } from "../names";
+import InputHitPoints from "./InputHitPoints";
+import RowContainer from "../../RowContainer";
 
 
 const EditableStatBlock = ({ slug, encounter, setProperties }) => {
@@ -15,22 +17,24 @@ const EditableStatBlock = ({ slug, encounter, setProperties }) => {
         setProperties(slug, HIT_POINTS, num);
     }
 
+    const changeHitPoints = num => {
+        const change = encounter[slug][HIT_POINTS] - num;
+        setHitPoints(change)
+    }
     const handleClick = () => {
         setUsingDefaultHP( false );
+        setHitPoints(monster?.hit_points);
     }
 
     useEffect( () => {
-        if(usingDefaultHP){
-            setHitPoints(monster?.hit_points);
-        }else{
-            setHitPoints(rollDiceFromString(monster?.hit_dice))
-        }
-    }, [ usingDefaultHP ]);
-
-    useEffect( () => {
-        if( encounter[slug][HIT_POINTS] === -1){
+        // In the first round of combat
+        // Hit Points start as -1
+        if( encounter[slug][HIT_POINTS] === -1 ){
             setHitPoints(rollDiceFromString(monster?.hit_dice));
             setUsingDefaultHP(true);
+        // Anytime after false
+        }else{
+            setUsingDefaultHP(false);
         }
     }, [ slug ] );
 
@@ -41,14 +45,17 @@ const EditableStatBlock = ({ slug, encounter, setProperties }) => {
                 Use Default HP
             </Button>
             }
-            <ShowStat 
-                statName='Hit Points'
-                stat={encounter[slug][HIT_POINTS]}
-            />
-            <ShowStat
-                statName='AC'
-                stat={monster ? monster.armor_class : 0}
-            />
+            <RowContainer>
+                <ShowStat 
+                    statName='Hit Points'
+                    stat={encounter[slug][HIT_POINTS]}
+                />
+                <InputHitPoints changeHitPoints={changeHitPoints}/>
+                <ShowStat
+                    statName='AC'
+                    stat={monster ? monster.armor_class : 0}
+                />
+            </RowContainer>
         </>
     )
 }
