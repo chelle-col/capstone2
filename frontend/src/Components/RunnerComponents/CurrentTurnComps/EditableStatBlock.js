@@ -18,7 +18,7 @@ const EditableStatBlock = ({ slug, encounter, setProperties }) => {
     }
 
     const changeHitPoints = num => {
-        const change = encounter[slug][HIT_POINTS] - num;
+        const change = encounter[slug][HIT_POINTS] + num;
         setHitPoints(change)
     }
     const handleClick = () => {
