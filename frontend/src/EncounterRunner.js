@@ -12,8 +12,6 @@ const EncounterRunner = () => {
     // TODO: 
     // dropdown on home page goes underneath site logo
     // option to use one initiative for all monsters
-    // hit point tracking
-    // Colapseable Sections in Monster Detail
     const encounter = useSelector( st => st.currentEncounter );
     const numberOf = useSelector( st => st.numberPlayers );
 

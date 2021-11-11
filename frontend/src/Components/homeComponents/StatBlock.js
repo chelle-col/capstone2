@@ -55,7 +55,7 @@ const StatBlock = ({ encounter }) => {
                 <PartialListItem items={[ ' ', 'Name', "CR"]}/>
                 </div>
                 <div className='row'>
-                {monsterInfo && monsterInfo.map( m => <NumListItem key={m.slug} item={m}/>)}
+                    {monsterInfo && monsterInfo.map( m => <NumListItem key={m.slug} item={m}/>)}
                 <div className='col'>
                     <PartialListItem items={['Total Experience: ', totalXp]}/>
                 </div>
@@ -63,9 +63,9 @@ const StatBlock = ({ encounter }) => {
                     <PartialListItem items={['Experience Per Player: ', totalXp/players]} />
                 </div>
                 <div className='row'>
-                <div className={`col-4 bg-${difficulty.background} rounded m-2`} style={{color: difficulty.text}}>
-                    <PartialListItem items={[difficulty.name]} />
-                </div>
+                    <div className={`col-4 bg-${difficulty.background} rounded m-2`} style={{color: difficulty.text}}>
+                        <PartialListItem items={[difficulty.name]} />
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useMonsterApi from './api/useMonsterApi';
+import Expandable from './Components/Expandable';
 import StatBlock from './Components/monster/MonsterStatBlock';
 import Actions from './Components/monster/Actions';
 import Reactions from './Components/monster/Reactions';
@@ -40,13 +41,30 @@ const MonsterDetail = ({ monsterName }) => {
             <PartialInfo name='Hit Points' info={`${monsterInfo.hit_points} (${monsterInfo.hit_dice})`}/>
             <Speed speed={monsterInfo.speed} />
             <StatBlock stats={statInfo} />
-            <SavingThrows info={monsterInfo} stats={statInfo}/>
-            <MiscInfo info={monsterInfo}/>
-            <Skills skills={monsterInfo.skills} />
-            <SpecialAbilites abilities={monsterInfo.special_abilities} />
-            <Actions actions={monsterInfo.actions} />
-            {monsterInfo.reactions && <Reactions reactions={monsterInfo.reactions} />}
-            {monsterInfo.legendary_actions && <LegendaryActions desc={monsterInfo.legendary_desc} actions={monsterInfo.legendary_actions} />}
+            <Expandable title='Saving Throws'>
+                <SavingThrows info={monsterInfo} stats={statInfo}/>
+            </Expandable>
+            <Expandable title='Misc Info' >
+                <MiscInfo info={monsterInfo}/>
+            </Expandable>
+            <Expandable title='Skills'>
+                <Skills skills={monsterInfo.skills} />
+            </Expandable>
+            <Expandable title='Special Abilites'>
+                <SpecialAbilites abilities={monsterInfo.special_abilities} />
+            </Expandable>
+            <Expandable title='Actions'>
+                <Actions actions={monsterInfo.actions} />
+            </Expandable>
+            {monsterInfo.reactions && 
+                <Expandable title='Reactions'>
+                    <Reactions reactions={monsterInfo.reactions} />
+                </Expandable>
+            }
+            {monsterInfo.legendary_actions && 
+                <Expandable title='Legendary Actions'>
+                    <LegendaryActions desc={monsterInfo.legendary_desc} actions={monsterInfo.legendary_actions} />
+                </Expandable>}
         </div>
         )
 }
