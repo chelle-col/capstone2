@@ -13,7 +13,9 @@ const Expandable = ({ children, title }) => {
             {!isExpanded && 
                 <div className='container-fluid'>
                     <div className='row'>
-                        <Button className='col-auto' size='sm' onClick={handleClick}><i className="fas fa-caret-right"></i></Button>
+                        <div className='col-auto'>
+                            <Button size='sm' onClick={handleClick}><i className="fas fa-caret-right"></i></Button>
+                        </div>
                         <h4 className='col'>{title}</h4>
                     </div>
                 </div>
@@ -21,7 +23,9 @@ const Expandable = ({ children, title }) => {
             {isExpanded && 
                 <div className='container-fluid'>
                     <div className='row'>
-                        <Button className='col-auto' size='sm' onClick={handleClick}><i className="fas fa-caret-down"></i></Button>
+                        <div className="col-auto">
+                            <Button size='sm' onClick={handleClick}><i className="fas fa-caret-down"></i></Button>
+                        </div>
                         <div className='col'>
                             {children}
                         </div>
