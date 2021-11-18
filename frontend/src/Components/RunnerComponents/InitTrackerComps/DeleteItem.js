@@ -12,7 +12,7 @@ const GreyedOut = styled.div`
     `;
     const PostionWrapper = styled.div`
         position: absolute;
-        right: 2%;
+        right: 5%;
     `;
 
 const DeleteItem = ({ deleteMonster, slug }) => {

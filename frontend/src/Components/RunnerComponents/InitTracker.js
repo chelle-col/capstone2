@@ -3,7 +3,11 @@ import { Button } from 'reactstrap';
 import { useEffect, useState } from "react";
 import Header from './Header';
 
-const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }) => {
+const InitTracker = ({ setMonsterInitiative, 
+                        deleteMonster, 
+                        encounter, 
+                        setTurn 
+                    }) => {
 
     const [ isDeleting, setIsDeleting ] = useState(false);
 
@@ -11,6 +15,7 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
        return Object.values(obj).sort(compareCreatures)
     };
     
+    // Compares using initiative
     const compareCreatures = (a, b) => {
         if(a.initiative < b.initiative){
             return 1;
@@ -20,7 +25,7 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
             return 0;
         }
     };
-
+    // Initial Encounter
     const buildEncounterObj = encounter => {
         const encounterObject = {
             ...encounter,
@@ -31,7 +36,7 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
    
     const [ encounterObj, setEncounterObj ] = 
         useState(buildEncounterObj(encounter));
-    
+    // Change when Encounter Changes
     useEffect(() => {
         const encounterAsArray = Object.values(encounter);
         encounterAsArray.forEach( entry => {
@@ -91,6 +96,7 @@ const InitTracker = ({ setMonsterInitiative, deleteMonster, encounter, setTurn }
                 setMonsterInitiative={setMonsterInitiative}
                 deleteMonster={removeTurn}
                 isDeleting={isDeleting}
+                setTurn={setTurn}
             />
         </>
     )

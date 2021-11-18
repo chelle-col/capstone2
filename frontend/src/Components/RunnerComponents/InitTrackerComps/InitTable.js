@@ -6,7 +6,14 @@ const Container = styled.div`
     position: relative;
     width: 100%;
 `;
-const InitTable = ({ deleteMonster, isDeleting, setMonsterInitiative, encounterArray, obj }) => {
+const InitTable = ({ 
+        deleteMonster, 
+        isDeleting,
+        setMonsterInitiative,
+        encounterArray, 
+        obj,
+        setTurn
+     }) => {
     
     return (
         <>
@@ -24,6 +31,7 @@ const InitTable = ({ deleteMonster, isDeleting, setMonsterInitiative, encounterA
                         item={i} 
                         setMonsterInitiative={setMonsterInitiative}
                         obj={obj[i.slug]}
+                        setTurn={setTurn}
                     />
                 </Container>
                 )}

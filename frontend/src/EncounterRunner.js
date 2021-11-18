@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CurrentTurn from './Components/RunnerComponents/CurrentTurn';
 import InitTracker from "./Components/RunnerComponents/InitTracker";
-import { INITIATIVE } from './Components/RunnerComponents/names';
+import { INITIATIVE, IS_ACTIVE } from './Components/RunnerComponents/names';
 import AddTo from './Components/RunnerComponents/AddTo';
 import { useDispatch } from 'react-redux';
 import { changeNumOf } from './redux/actionCreaters';
@@ -40,7 +40,15 @@ const EncounterRunner = () => {
         }))
     };
 
-    const [ currentTurn, setCurrentTurn ] = useState(encounterInfo.player_0);
+    const [ currentTurn, setCurrentTurn ] = useState(
+        encounterInfo.player_0
+    );
+
+    const setTurn = ( turn ) => {
+        turn[IS_ACTIVE] = true;
+        encounterInfo[currentTurn.slug][IS_ACTIVE] = false;
+        setCurrentTurn(turn);
+    }
     
     const addToEncounter = (slug) => {
         const bareSlug = slug.split("_")[0];
@@ -69,7 +77,7 @@ const EncounterRunner = () => {
                             setMonsterInitiative={setMonsterProperties}
                             deleteMonster={deleteMonster}
                             encounter={encounterInfo} 
-                            setTurn={setCurrentTurn}
+                            setTurn={setTurn}
                             />
                     </div>
                     <div className='col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5'>

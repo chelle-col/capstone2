@@ -1,4 +1,4 @@
-import { INITIATIVE, HIT_POINTS } from './names';
+import { INITIATIVE, HIT_POINTS, IS_ACTIVE } from './names';
 
 export const rollDiceFromString = ( str ) => {
     if( !str || str === -1 ){
@@ -26,7 +26,8 @@ export const makeMonstersFromArray = (monsterArray) =>{
                 ...monsterArray[m],
                 slug : newSlug,
                 [INITIATIVE] : 0,
-                [HIT_POINTS] : -1
+                [HIT_POINTS] : -1,
+                [IS_ACTIVE]: false
             }
         }
     }
@@ -41,7 +42,8 @@ export const makePlayersFromNum = ( num ) => {
             name: `Player ${i + 1}`,
             'slug': slug,
             [INITIATIVE]: 0,
-            [HIT_POINTS]: -1
+            [HIT_POINTS]: -1,
+            [IS_ACTIVE]: false
         }
     }
     return players;

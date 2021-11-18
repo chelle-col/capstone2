@@ -8,8 +8,8 @@ const RowContainer = ({ children }) => {
     return(
         <div className='container-fluid'>
             <div className='row'>
-                {realChildren.map( c => (
-                    <div className='col'>
+                {realChildren.map( (c, idx) => (
+                    <div key={idx} className='col'>
                         {c}
                     </div>
                 ))}

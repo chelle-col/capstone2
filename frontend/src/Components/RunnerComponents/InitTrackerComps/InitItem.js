@@ -1,10 +1,10 @@
 import { Button, Form, Input } from 'reactstrap';
 import { useState } from 'react';
-import { INITIATIVE } from '../names';
+import { INITIATIVE, IS_ACTIVE } from '../names';
 import useMonsterApi from '../../../api/useMonsterApi';
 import { getModifier } from '../../monster/modifier';
 
-const InitItem = ({ setMonsterInitiative, item, obj }) => {
+const InitItem = ({ setMonsterInitiative, item, obj, setTurn }) => {
     const [ isLoading, monsterInfo ] = useMonsterApi( item.slug.split('_')[0] );
     const [ isInput, setIsInput ] = useState(false);
     const [ currentInfo, setCurrentInfo ] = useState({
@@ -12,12 +12,18 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
         'initiaitve': item.initiaitve || 0
         }
     );
+    const bg = obj[IS_ACTIVE] ? 'primary' : 'black';
     const handleFocusIn = () => {
-        setIsInput(true);
-    }
+        setTurn(obj);
+    };
+
     const handleFocusOut = () => {
         setIsInput(false);
-    }
+    };
+
+    const handleEdit = () => {
+        setIsInput(true);
+    };
 
     const handleChange = e => {
         e.preventDefault();
@@ -52,12 +58,19 @@ const InitItem = ({ setMonsterInitiative, item, obj }) => {
     }
 
     return (
-        <div className='container-fluid p-0'>
+        <div className={`container-fluid rounded m-0 px-1 bg-${bg}`}>
                 {!isInput &&
                 <div 
+                    className="row"
                     onClick={handleFocusIn} 
-                    className='row'>
-                        <h4 className='col text-right'>{obj?.name}</h4> <h4 className='col'>{obj?.[INITIATIVE]}</h4>
+                    >
+                        <h4 className='col text-center'>{obj?.name}</h4> <h4 className='col'>{obj?.[INITIATIVE]}
+                        </h4>
+                        <div className="col">
+                            <Button className="my-1" onClick={handleEdit}>
+                                <i className="fas fa-pen-nib"></i>
+                            </Button>
+                        </div>
                 </div>
                 }
                 {isInput && 
